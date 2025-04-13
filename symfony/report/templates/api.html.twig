@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API{% endblock %}
+
+{% block body %}
+    <h1>API - JSON endpoints</h1>
+    <p>Här är en lista över alla JSON-endpoints du kan testa:</p>
+
+    <ul>
+        <li><a href="{{ path('api_lucky') }}">/api/lucky</a> – Slumpar ett lyckotal</li>
+        <li><a href="{{ path('api_quote') }}">/api/quote</a> – Returnerar ett citat</li>
+    </ul>
+{% endblock %}
+
