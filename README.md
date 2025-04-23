@@ -26,3 +26,18 @@ Syftet är att lära sig objektorienterad PHP-programmering, routing, templates 
 ```bash
 git clone https://git@github.com:cobj24/report.git
 cd me/report
+
+### 2. Installera beroenden
+
+Se till att du har Composer installerat, och kör sedan:
+
+composer install
+
+### 3. Starta Symfony-servern
+
+Kör webbservern med Symfony CLI:
+php -S localhost:8888 -t public
+
+### 4. Öppna i webbläsaren
+
+Gå till http://localhost:8000 i din webbläsare för att se startsidan.
