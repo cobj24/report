@@ -7,22 +7,22 @@
     <p>Här är en lista över alla JSON-endpoints du kan testa:</p>
 
     <ul>
-        <li><a href="{{ path('api_lucky') }}">/api/lucky</a> – Slumpar ett lyckotal</li>
-        <li><a href="{{ path('api_quote') }}">/api/quote</a> – Returnerar ett citat</li>
-        <li><a href="{{ path('api_deck') }}">/api/deck</a> – Returnerar hela kortleken, sorterad</li>
+        <li><a href="{{ basePath }}/api/lucky">/api/lucky</a> – Slumpar ett lyckotal</li>
+        <li><a href="{{ basePath }}/api/quote">/api/quote</a> – Returnerar ett citat</li>
+        <li><a href="{{ basePath }}/api/deck">/api/deck</a> – Returnerar hela kortleken, sorterad</li>
     </ul>
 
     <h2>POST-endpoints (testbara med knappar)</h2>
 
-    <form action="{{ path('api_shuffle') }}" method="post">
+    <form action="{{ basePath }}/api/deck/shuffle" method="post">
         <button type="submit">Blanda kortleken (POST /api/deck/shuffle)</button>
     </form>
 
-    <form action="{{ path('api_draw_one') }}" method="post" style="margin-top: 10px;">
+    <form action="{{ basePath }}/api/deck/draw" method="post" style="margin-top: 10px;">
         <button type="submit">Dra ett kort (POST /api/deck/draw)</button>
     </form>
 
-    <form action="{{ path('api_draw_number', { number: 5 }) }}" method="post" style="margin-top: 10px;">
+    <form action="{{ basePath }}/api/deck/draw/5" method="post" style="margin-top: 10px;">
         <button type="submit">Dra 5 kort (POST /api/deck/draw/5)</button>
     </form>
 {% endblock %}
