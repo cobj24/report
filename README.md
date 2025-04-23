@@ -41,3 +41,7 @@ php -S localhost:8888 -t public
 ### 4. Öppna i webbläsaren
 
 Gå till http://localhost:8000 i din webbläsare för att se startsidan.
+
+### 5. Utforska
+
+Utforska webbsidans funktioner och testa samtliga funktioner.
