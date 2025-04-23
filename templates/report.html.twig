@@ -30,7 +30,12 @@
     <section id="kmom02">
         <h2>kmom02</h2>
         <p>
-            Redovisning för kmom02...
+            I kursmoment 2 började vi bygga ett kortspel i PHP och Symfony. Arv innebär att en klass kan ärva egenskaper och metoder från en annan klass. I min kod används det t.ex. genom att CardGraphic ärver från Card och därmed får alla basklassens egenskaper (såsom färg och värde) men kan lägga till grafisk presentation med t.ex. UTF-8-symboler.
+            Komposition är när ett objekt innehåller andra objekt. Det används i mitt fall i DeckOfCards och CardHand, där båda innehåller en array av Card-objekt.
+            Ett interface definierar vilka metoder en klass måste implementera, men innehåller ingen logik. Traits är återanvändbara kodblock som kan användas i flera klasser. De kan vara praktiska för att dela gemensam logik utan att använda arv.
+            Jag är nöjd med hur jag strukturerade mina klasser med tydliga ansvarsområden: Card, DeckOfCards, CardHand. Jag använde arv för att särskilja grafiska kort från logiska, och sessionen för att spara kortleken mellan requests.
+            Jag tycker det har varit både roligt och utmanande att jobba med Symfony. MVC-strukturen gör det tydligt vad som ska ligga var, vilket hjälper mig hålla hyfsad ordning i projektet.
+            Jag gillar hur kontroller och templates samspelar, och att routes är så enkla att definiera med attribut. Min TIL för detta kursmoment är hur man använder sessioner för att behålla tillstånd över olika requests.
         </p>
     </section>
 

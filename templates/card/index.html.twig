@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kortspel{% endblock %}
+
+{% block body %}
+    <h1>Välkommen till kortspelsapplikationen</h1>
+
+    <p>Den här applikationen hanterar en klassisk fransk-engelsk kortlek med hjälp av PHP-klasser integrerade i Symfony. Kortleken sparas i sessionen och kan visas, blandas och dra kort ifrån.</p>
+
+    <h2>Klasser och struktur</h2>
+
+    <ul>
+        <li><strong>Card</strong> – Representerar ett vanligt spelkort med färg (suit) och värde (value).</li>
+        <li><strong>CardGraphic</strong> – Ärver från <code>Card</code> och lägger till möjligheten att visa kortet grafiskt (ex. med UTF-8-symboler).</li>
+        <li><strong>DeckOfCards</strong> – Hanterar hela kortleken. Kan skapa kort, blanda och dra kort.</li>
+        <li><strong>CardHand</strong> – Representerar en hand med dragna kort.</li>
+    </ul>
+
+    <p>Relationerna mellan klasserna visualiseras i UML-diagrammet nedan:</p>
+
+    <img src="{{ asset('img/uml.png') }}" alt="UML-diagram för kortklasser" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+
+    <h2>Funktioner</h2>
+    <ul>
+        <li><a href="{{ path('card_deck') }}">Visa hela kortleken</a></li>
+        <li><a href="{{ path('card_shuffle') }}">Blanda kortleken</a></li>
+        <li><a href="{{ path('card_draw') }}">Dra ett kort</a></li>
+        <li><a href="{{ path('card_draw_number', { number: 5 }) }}">Dra 5 kort</a></li>
+        <li><a href="{{ path('session_debug') }}">Visa sessionsinnehåll</a></li>
+        <li><a href="{{ path('session_delete') }}">Rensa session</a></li>
+    </ul>
+{% endblock %}

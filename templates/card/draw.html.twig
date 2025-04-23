@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dragna kort{% endblock %}
+
+{% block body %}
+    <h1>Dragna kort</h1>
+
+    {% if cards is not empty %}
+        <div class="drawn-cards">
+            {% for card in cards %}
+                {% set suit = card.getSuit()|lower %}
+                <span class="playing-card {{ suit }}">{{ card }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Inga kort drogs.</p>
+    {% endif %}
+
+    <p><strong>Kvar i leken:</strong> {{ remaining }}</p>
+
+    <a href="{{ path('card_deck') }}">Tillbaka till kortleken</a>
+{% endblock %}
