@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spela 21{% endblock %}
+
+{% block body %}
+    <h1>Spela 21</h1>
+        {% if player.getHand.getCards is empty and status == 'ongoing' %}
+            <p>Tryck på knappen nedan för att ta ditt första kort.</p>
+        {% endif %}
+    <h2>Spelarens kort:</h2>
+    <p>
+        <div class="drawn-cards">
+            {% for card in player.getHand.getCards %}
+                {% set suit = card.getSuit()|lower %}
+                <span class="playing-card {{ suit }}">{{ card }}</span>
+            {% endfor %}
+        </div>
+        <br>Poäng: {{ player.getScore }}
+    </p>
+
+    {% if status != 'ongoing' %}
+        <h2>Bankens kort:</h2>
+        <p>
+        <div class="drawn-cards">
+            {% for card in bank.getHand.getCards %}
+                {% set suit = card.getSuit()|lower %}
+                <span class="playing-card {{ suit }}">{{ card }}</span>
+            {% endfor %}
+        </div>
+            <br>Poäng: {{ bank.getScore }}
+        </p>
+
+        <h3>
+            {% if status == 'player_wins' %}
+                🎉 Du vinner!
+            {% else %}
+                💀 Banken vinner.
+            {% endif %}
+        </h3>
+
+        <a href="{{ path('game_reset') }}" class="btn btn-primary">Spela igen</a>
+    {% else %}
+        <form method="post">
+            <button name="draw" class="btn btn-success">Ta ett kort</button>
+            <button name="stay" class="btn btn-warning">Stanna</button>
+        </form>
+    {% endif %}
+{% endblock %}

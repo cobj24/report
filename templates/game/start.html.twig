@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kortspel 21{% endblock %}
+
+{% block body %}
+    <h1>Kortspel 21</h1>
+
+    <p>
+        Målet med spelet är att komma så nära 21 som möjligt utan att gå över.<br>
+        Ess räknas som 1 eller 14. Klädda kort (J, Q, K) är värda 10.
+    </p>
+
+    <h2>Regler</h2>
+    <ul>
+        <li>Spelet börjar utan några kort utdelade.</li>
+        <li>Spelaren tar första kortet.</li>
+        <li>Spelaren får välja att stanna eller ta fler kort.</li>
+        <li>Om spelaren får mer än 21 vinner banken direkt.</li>
+        <li>Banken drar kort tills den har minst 17 poäng.</li>
+        <li>Banken vinner vid lika eller om den har mer än spelaren.</li>
+        <li>Om banken får över 21 vinner spelaren.</li>
+    </ul>
+
+    <a href="{{ path('game_reset') }}" class="btn btn-primary">Starta spelet</a>
+    <a href="{{ path('game_doc') }}" class="btn btn-secondary">Dokumentation</a>
+{% endblock %}

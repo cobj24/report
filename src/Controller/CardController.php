@@ -63,7 +63,7 @@ class CardController extends AbstractController
             'remaining' => $deck->count()
         ]);
     }
-    
+
     #[Route('/session/delete', name: 'session_delete')]
     public function deleteSession(SessionInterface $session): Response
     {

@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class LuckyControllerJson extends AbstractController
 {
     #[Route('/api/lucky', name: 'api_lucky')]
@@ -92,6 +91,34 @@ class LuckyControllerJson extends AbstractController
         return $this->json([
             'drawn' => $drawn,
             'remaining' => $deck->count()
+        ]);
+    }
+
+    #[Route('/api/game', name: 'api_game')]
+    public function gameStatus(SessionInterface $session): JsonResponse
+    {
+        $game = $session->get('game');
+
+        if (!$game) {
+            return $this->json([
+                'status' => 'no_game',
+                'message' => 'Ingen pågående spelomgång hittades.'
+            ]);
+        }
+
+        $playerHand = array_map(fn ($card) => (string)$card, $game->getPlayer()->getHand()->getCards());
+        $bankHand = array_map(fn ($card) => (string)$card, $game->getBank()->getHand()->getCards());
+
+        return $this->json([
+            'status' => $game->getStatus(),
+            'player' => [
+                'score' => $game->getPlayer()->getScore(),
+                'hand' => $playerHand
+            ],
+            'bank' => [
+                'score' => $game->getBank()->getScore(),
+                'hand' => $bankHand
+            ]
         ]);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Card;
+
 class Card
 {
     protected string $suit;
