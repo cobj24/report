@@ -75,28 +75,28 @@
         "symfony/polyfill-php81": "*",
         "symfony/polyfill-php82": "*"
     },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "importmap:install": "symfony-cmd",
-            "phpdoc": "tools/phpdoc/phpdoc --config=tools/phpdoc/phpdoc.xml",
-            "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit"
-        },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "phpmd": "tools/phpmd/vendor/bin/phpmd . text tools/phpmd/phpmd.xml || true",
-        "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
-        "lint": [
-            "@phpmd",
-            "@phpstan"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ],
-        "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
-        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v"
+"scripts": {
+    "auto-scripts": {
+        "cache:clear": "symfony-cmd",
+        "assets:install %PUBLIC_DIR%": "symfony-cmd",
+        "importmap:install": "symfony-cmd"
+    },
+    "phpdoc": "tools/phpdoc/phpdoc --config=tools/phpdoc/phpdoc.xml",
+    "phpunit": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text --coverage-filter=src/",
+    "phpmd": "tools/phpmd/vendor/bin/phpmd src,tests text tools/phpmd/phpmd.xml || true",
+    "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
+    "lint": [
+        "@phpmd",
+        "@phpstan"
+    ],
+    "post-install-cmd": [
+        "@auto-scripts"
+    ],
+    "post-update-cmd": [
+        "@auto-scripts"
+    ],
+    "csfix": "vendor/bin/php-cs-fixer fix src",
+    "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -108,6 +108,7 @@
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.75",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "7.2.*",
         "symfony/css-selector": "7.2.*",
