@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747327553">
-  <project timestamp="1747327553">
+<coverage generated="1747380962">
+  <project timestamp="1747380962">
     <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="9" coveredelements="9"/>
@@ -61,6 +61,178 @@
       <line num="38" type="method" name="count" visibility="public" complexity="1" crap="1" count="3"/>
       <line num="40" type="stmt" count="3"/>
       <metrics loc="43" ncloc="43" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="16" coveredelements="16"/>
+    </file>
+    <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Controller/CardController.php">
+      <class name="App\Controller\CardController" namespace="global">
+        <metrics complexity="7" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="0" elements="36" coveredelements="0"/>
+      </class>
+      <line num="13" type="method" name="index" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="19" type="method" name="deck" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="27" type="method" name="shuffle" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="39" type="method" name="drawOne" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <line num="53" type="method" name="drawNumber" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="67" type="method" name="deleteSession" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="70" type="stmt" count="0"/>
+      <line num="71" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="76" type="method" name="sessionDebug" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="79" type="stmt" count="0"/>
+      <line num="80" type="stmt" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <metrics loc="84" ncloc="82" classes="1" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="0" elements="36" coveredelements="0"/>
+    </file>
+    <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Controller/GameController.php">
+      <class name="App\Controller\GameController" namespace="global">
+        <metrics complexity="6" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="19" coveredelements="0"/>
+      </class>
+      <line num="16" type="method" name="play" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="39" type="method" name="reset" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="47" type="method" name="index" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <line num="53" type="method" name="doc" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <metrics loc="59" ncloc="56" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="19" coveredelements="0"/>
+    </file>
+    <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Controller/LuckyController.php">
+      <class name="App\Controller\LuckyController" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+      </class>
+      <line num="10" type="method" name="number" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="13" type="stmt" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="20" type="method" name="hi" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <metrics loc="28" ncloc="28" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+    </file>
+    <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Controller/LuckyControllerJson.php">
+      <class name="App\Controller\LuckyControllerJson" namespace="global">
+        <metrics complexity="9" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="0" elements="66" coveredelements="0"/>
+      </class>
+      <line num="14" type="method" name="lucky" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="26" type="method" name="apiLanding" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="32" type="method" name="quote" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="51" type="method" name="deck" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="59" type="method" name="shuffle" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="69" type="method" name="drawOne" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="74" type="stmt" count="0"/>
+      <line num="75" type="stmt" count="0"/>
+      <line num="77" type="stmt" count="0"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="79" type="stmt" count="0"/>
+      <line num="80" type="stmt" count="0"/>
+      <line num="83" type="method" name="drawNumber" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="87" type="stmt" count="0"/>
+      <line num="88" type="stmt" count="0"/>
+      <line num="89" type="stmt" count="0"/>
+      <line num="91" type="stmt" count="0"/>
+      <line num="92" type="stmt" count="0"/>
+      <line num="93" type="stmt" count="0"/>
+      <line num="94" type="stmt" count="0"/>
+      <line num="97" type="method" name="gameStatus" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="100" type="stmt" count="0"/>
+      <line num="102" type="stmt" count="0"/>
+      <line num="103" type="stmt" count="0"/>
+      <line num="104" type="stmt" count="0"/>
+      <line num="105" type="stmt" count="0"/>
+      <line num="106" type="stmt" count="0"/>
+      <line num="109" type="stmt" count="0"/>
+      <line num="110" type="stmt" count="0"/>
+      <line num="112" type="stmt" count="0"/>
+      <line num="113" type="stmt" count="0"/>
+      <line num="114" type="stmt" count="0"/>
+      <line num="115" type="stmt" count="0"/>
+      <line num="116" type="stmt" count="0"/>
+      <line num="117" type="stmt" count="0"/>
+      <line num="118" type="stmt" count="0"/>
+      <line num="119" type="stmt" count="0"/>
+      <line num="120" type="stmt" count="0"/>
+      <line num="121" type="stmt" count="0"/>
+      <line num="122" type="stmt" count="0"/>
+      <metrics loc="125" ncloc="123" classes="1" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="0" elements="66" coveredelements="0"/>
+    </file>
+    <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Controller/LuckyControllerTwig.php">
+      <class name="App\Controller\LuckyControllerTwig" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+      </class>
+      <line num="11" type="method" name="number" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="23" type="method" name="me" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="29" type="method" name="about" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="35" type="method" name="report" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
     </file>
     <file name="/home/cob/dbwebb-kurser/mvc/me/report/symfony/src/Dice/Dice.php">
       <class name="App\Dice\Dice" namespace="global">
@@ -151,6 +323,6 @@
       </class>
       <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="9" loc="317" ncloc="291" classes="7" methods="27" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="66" elements="96" coveredelements="91"/>
+    <metrics files="14" loc="654" ncloc="621" classes="12" methods="52" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="186" coveredstatements="66" elements="238" coveredelements="91"/>
   </project>
 </coverage>

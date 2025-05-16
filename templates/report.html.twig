@@ -53,7 +53,11 @@
     <section id="kmom04">
         <h2>kmom04</h2>
         <p>
-            Redovisning för kmom04...
+            I kursmoment 4 jobbade vi med att skapa dokumentation och tester för vårat kortspel. Till en början var det lite klurigt att skriva testkod istället för kod för funktionalitet. När jag väl vande mig vid att använda PHPUnit så blev det ganska smidigt att jobba med. Jag gillar hur tydlig återkoppling man får när ett test misslyckas – det gör det lättare att felsöka.
+            Jag lyckades nå över 90% kodtäckning för några av mina modellklasser. Samtliga i min /Card uppnådde 100%, det var däremot varierande resultat i mina /Dice och /Game mappar.
+            De flesta av mina modellklasser var ganska testbara eftersom de har tydliga metoder och inte är beroende av yttre miljöer. Men vissa delar var svårare att testa eftersom de blandar logik med beroenden. För att förbättra testbarheten hade jag kunnat bryta ut logik till separata tjänster eller hjälpaklasser.
+            Ja, jag gjorde om några av mina klasser utifrån testerna, specifikt hur ess beräknades både i Bank och Player, detta gjorde testerna mer funktionella. Ja, jag tycker att testbar kod ofta går hand i hand med ren kod. Om en metod är för lång eller gör för mycket blir den både svårare att förstå och att testa.
+            Mitt TIL för detta kursmoment är hur viktigt det är att ha filerna på rätt ställe. Jag hade till en början inte lagt till mina modellklasser i Symfony-mappen, så PHPDoc genererades inte. Jag lärde mig också hur värdefullt det är att skriva tester samtidigt som man utvecklar – inte bara efteråt.
         </p>
     </section>
 
