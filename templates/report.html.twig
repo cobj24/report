@@ -64,7 +64,12 @@
     <section id="kmom05">
         <h2>kmom05</h2>
         <p>
-            Redovisning för kmom05...
+            Kursmoment 5 fokuserade på koppling till databas och göra GET/POST formulär. Vi skapade ett bibliotek med böcker som sammankopplas mellan databas och webbsida.
+            Det gick överlag bra att jobba med Symfony och Doctrine i detta kursmoment. Det var lite klurigt till en början att förstå hur delarna hänger ihop, särskilt kopplingen mellan routes, controllers och templates, men ju mer jag jobbar med det desto mer självsäker känner jag mig. Jag märker att det är ganska mycket som händer bakom kulisserna, som jag tidigare inte reflekterat över.
+            Applikationen jag byggde är ett enkelt bibliotekssystem där man kan lägga till, visa, redigera och ta bort böcker. Jag valde att följa MVC-strukturen och lade fokus på att återanvända komponenter på ett tydligt sätt. Jag försökte hålla gränssnittet så enkelt som möjligt men ändå tydligt – till exempel att göra alla knappar konsekventa i design och lägga till bekräftelse vid borttagning.
+            Det gick bra med ORM och CRUD. Doctrine förenklar mycket genom att man slipper skriva SQL direkt. Jag uppskattade att man kan jobba direkt med objekt, och att kopplingar mellan entiteter kan hanteras via annotationer. Samtidigt kändes det lite ovant att inte ha full kontroll över SQL-frågorna – jämfört med t.ex. PDO där man skriver allt själv.
+            Min uppfattning är att ORM är väldigt smidigt i projekt där man jobbar objektorienterat och där relationsmodellen inte är alltför komplex. Det sparar tid och minskar mängden kod. Min TIL för detta kursmoment är framför allt hur man använder Doctrine för att skapa och hantera databastabeller direkt från sina PHP-klasser.
+            Jag lärde mig också mer om hur JSON-endpoints kan implementeras parallellt med vanliga HTML-vyer, vilket gör det enkelt att komplettera en applikation med ett API.
         </p>
     </section>
 
