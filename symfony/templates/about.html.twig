@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <h1>About</h1>
+
+    <div class="about-columns">
+        <div class="about-left">
+            <p>
+                Kursen mvc handlar om objektorienterad PHP-programmering med kända webbramverk, enhetstestning,
+                kodkvalitet och databaskopplingar med objekt relational mapping (ORM).
+                Kursen består av 6 kursmoment som skall utföras och lämnas in samt ett avslutande kmom07/10 som examinerar kursen.
+            </p>
+
+            <p>
+                <a href="https://github.com/dbwebb-se/mvc" target="_blank">Se kursens GitHub-repo</a><br>
+                <a href="https://github.com/cobj24?tab=repositories" target="_blank">Mina egna repos</a>
+            </p>
+        </div>
+
+        <div class="about-right">
+            <img src="{{ asset('img/mvc.png') }}" alt="mvc" class="about-img">
+        </div>
+    </div>
+{% endblock %}

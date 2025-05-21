@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Doc{% endblock %}
+
+{% block body %}
+    <h1>Dokumentation kortspel (21)</h1>
+        <h2>Flödesschema (beskrivning):</h2>
+    <img src="{{ asset('img/beskrivning.png') }}" alt="beskrivning" class="about-img">
+    <h2>Pseudokod:</h2>
+    <img src="{{ asset('img/pseudokod.png') }}" alt="pseudokod" class="about-img">
+    <h2>Klasser:</h2>
+        <p>Deck: Hanterar blandning och utdelning av kort.
+        Card: Representerar ett spelkort.
+        Player: Representerar spelaren, håller kort och poäng.
+        Bank: Arv från Player, med annan logik för drag.
+        Game21: Styr spelets logik (spelets tillstånd, vinst, turer).
+        </p>
+{% endblock %}

@@ -11,6 +11,10 @@
         <li><a href="{{ path('api_quote') }}">/api/quote</a> – Returnerar ett citat</li>
         <li><a href="{{ path('api_deck') }}">/api/deck</a> – Returnerar hela kortleken, sorterad</li>
         <li><a href="{{ path('api_game') }}">/api/game</a> – Visar aktuell poäng i spelet 21</li>
+        <li><a href="{{ path('api_library_books') }}">/api/library/books</a> – Visar alla böcker i biblioteket</li>
+        <li><a href="{{ path('api_library_book_by_isbn', {'isbn': '9789113132969'}) }}">
+            /api/library/book/9789113132969
+        </a> – Visa bok med ISBN 9789113132969</li>
     </ul>
 
     <h2>POST-endpoints (testbara med knappar)</h2>

@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortleken{% endblock %}
+
+{% block body %}
+<div class="deck">
+    {% for card in cards %}
+        {% set suit = card.getSuit()|lower %}
+        <span class="playing-card {{ suit }}">{{ card }}</span>
+    {% endfor %}
+</div>
+{% endblock %}

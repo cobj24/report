@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session Debug{% endblock %}
+
+{% block body %}
+    <h1>Session Debug</h1>
+
+    {% if session is not empty %}
+        <ul>
+            {% for key, value in session %}
+                <li>
+                    <strong>{{ key }}:</strong>
+                    <pre>{{ dump(value) }}</pre>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sessionen är tom.</p>
+    {% endif %}
+
+    <a href="{{ path('session_delete') }}">Rensa session</a>
+{% endblock %}

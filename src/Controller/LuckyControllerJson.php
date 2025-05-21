@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Card\DeckOfCards;
+use App\Repository\BookRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -120,5 +121,43 @@ class LuckyControllerJson extends AbstractController
                 'hand' => $bankHand
             ]
         ]);
+    }
+
+    #[Route('/api/library/books', name: 'api_library_books', methods: ['GET'])]
+    public function getAllBooks(BookRepository $bookRepository): JsonResponse
+    {
+        $books = $bookRepository->findAll();
+
+        $data = array_map(function ($book) {
+            return [
+                'id' => $book->getId(),
+                'title' => $book->getTitle(),
+                'isbn' => $book->getIsbn(),
+                'author' => $book->getAuthor(),
+                'image' => $book->getImage(),
+            ];
+        }, $books);
+
+        return $this->json($data);
+    }
+
+    #[Route('/api/library/book/{isbn}', name: 'api_library_book_by_isbn', methods: ['GET'])]
+    public function getBookByIsbn(BookRepository $bookRepository, string $isbn): JsonResponse
+    {
+        $book = $bookRepository->findOneBy(['isbn' => $isbn]);
+
+        if (!$book) {
+            return $this->json(['error' => 'Book not found'], 404);
+        }
+
+        $data = [
+            'id' => $book->getId(),
+            'title' => $book->getTitle(),
+            'isbn' => $book->getIsbn(),
+            'author' => $book->getAuthor(),
+            'image' => $book->getImage(),
+        ];
+
+        return $this->json($data);
     }
 }

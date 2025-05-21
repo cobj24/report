@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+    <h1>Bibliotek</h1>
+
+    <table class="library">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Isbn</th>
+                <th>Author</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.author }}</td>
+                <td><img src="{{ asset(book.image) }}" alt="{{ book.title }}" width="80"></td>
+                <td>
+                    <a href="{{ path('app_book_show', {'id': book.id}) }}" class="button-link">show</a>
+                    <a href="{{ path('app_book_edit', {'id': book.id}) }}" class="button-link">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_book_new') }}" class="button-link">Create new</a>
+    <a href="{{ path('app_library_reset') }}" class="button-link">Återställ databasen</a>
+
+{% endblock %}

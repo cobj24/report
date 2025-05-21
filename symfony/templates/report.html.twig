@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block body %}
+    <h1>Report</h1>
+
+    <nav class="report-nav">
+        <a href="#kmom01">kmom01</a>
+        <a href="#kmom02">kmom02</a>
+        <a href="#kmom03">kmom03</a>
+        <a href="#kmom04">kmom04</a>
+        <a href="#kmom05">kmom05</a>
+        <a href="#kmom06">kmom06</a>
+        <a href="#kmom07/10">kmom07/10</a>
+    </nav>
+
+    <section id="kmom01">
+        <h2>kmom01</h2>
+        <p>
+            I detta kursmoment bekantade vi oss med grunderna för objektorienterad PHP med hjälp av designmönstret MVC. Jag har begränsad erfarenhet av objektorientering, i en tidigare python-kurs har jag använt mig av objektorientering.
+            Utöver detta har jag inte arbetat med objektorienterad programmering tidigare. PHP är ett objektorienterat språk, vilket betyder att du kan använda klasser och objekt för att strukturera koden på ett mer organiserat och återanvändbart sätt.
+            En klass är som en mall eller ritning för ett objekt, och ett objekt är en instans av den klassen. För att skapa en klass behöver man initiera denna med nyckelordet "class", därefter kan man instansiera klassen med ett objekt.
+            Uppgiften me/report gick bra, det var till en början svårt att få alla delar på plats (särskilt med symfony), men när grunden väl fanns på plats var resterade delar i uppgiften inte så svår att få till. Mycket av det som hanterades i uppgiften var bekant sedan tidigare kurser, med några modifieringar i hur koden skrivs.
+            Från artikeln "PHP the right way" tycker jag det mest intressanta var delen om meta-programmering ("Reflection API" och "Magic Methods"), dessa delar vill jag gärna utforska mer. Även delen om "Compiled Templates" var av intresse då vi använder oss till stor del av twig.
+            Min TIL för detta kmom är hur man använder routes för att visa olika webbplatser och att dessa är kopplade till egen twig fil där html-koden finns.
+        </p>
+    </section>
+
+    <section id="kmom02">
+        <h2>kmom02</h2>
+        <p>
+            I kursmoment 2 började vi bygga ett kortspel i PHP och Symfony. Arv innebär att en klass kan ärva egenskaper och metoder från en annan klass. I min kod används det t.ex. genom att CardGraphic ärver från Card och därmed får alla basklassens egenskaper (såsom färg och värde) men kan lägga till grafisk presentation med t.ex. UTF-8-symboler.
+            Komposition är när ett objekt innehåller andra objekt. Det används i mitt fall i DeckOfCards och CardHand, där båda innehåller en array av Card-objekt.
+            Ett interface definierar vilka metoder en klass måste implementera, men innehåller ingen logik. Traits är återanvändbara kodblock som kan användas i flera klasser. De kan vara praktiska för att dela gemensam logik utan att använda arv.
+            Jag är nöjd med hur jag strukturerade mina klasser med tydliga ansvarsområden: Card, DeckOfCards, CardHand. Jag använde arv för att särskilja grafiska kort från logiska, och sessionen för att spara kortleken mellan requests.
+            Jag tycker det har varit både roligt och utmanande att jobba med Symfony. MVC-strukturen gör det tydligt vad som ska ligga var, vilket hjälper mig hålla hyfsad ordning i projektet.
+            Jag gillar hur kontroller och templates samspelar, och att routes är så enkla att definiera med attribut. Min TIL för detta kursmoment är hur man använder sessioner för att behålla tillstånd över olika requests.
+        </p>
+    </section>
+
+    <section id="kmom03">
+        <h2>kmom03</h2>
+        <p>
+            Kursmoment 3 hanterade kortspelet 21 och applikation med objektorienterade konstruktioner enligt MVC. Att modellera kortspelet med flödesdiagram och pseudokod kändes som ett bra sätt att strukturera mina tankar. Det hjälpte mig att visualisera hur spelet borde fungera steg för steg, särskilt när det gällde spelets logik som "dra kort", "stanna" och "bankens tur".
+            Flödesdiagrammet gav en tydlig överblick över spelets faser, medan pseudokoden hjälpte till att bryta ner uppgiften i mindre, hanterbara delar. Jag tycker definitivt att detta arbetssätt stödjer min problemlösning. Det gjorde att jag kunde fokusera på struktur först – innan jag fastnade i detaljer kring syntax eller kod.
+            Jag återanvände tidigare skapade kortklasser (som Card, DeckOfCards, CardHand) och byggde vidare på dem genom att skapa spelets huvudklasser: Game21, Player, Bank. Jag är nöjd med hur spelet fungerar och att jag lyckades följa instruktionerna stegvis: från landningssida, via spelmotor, till API. Det visuella blev också bättre efter att jag stylade korten med CSS.
+            De förbättringsområden som jag skulle vilja jobba vidare med är att göra banken mer intelligent och som tar hjälp av statistiken. Jag skulle även vilja göra spelets logik ännu mer modulär med ett GameState-objekt. Att koda i Symfony har till en början varit lite utmanande eftersom det finns många koncept att hålla koll på – routing, controllers, templates osv.
+            Jag känner mig tryggare nu med hur man strukturerar applikationen i Symfony, och jag uppskattar separationen mellan logik och presentation. Mitt TIL för detta kmom är hur viktigt det är att planera innan man kodar – flödesdiagram och pseudokod hjälpte visualisera och strukturera planeringen. Jag lärde mig också återanvända klasser och hur man skapar både HTML-sidor och API-endpoints inom samma ramverk.
+        </p>
+    </section>
+
+    <section id="kmom04">
+        <h2>kmom04</h2>
+        <p>
+            I kursmoment 4 jobbade vi med att skapa dokumentation och tester för vårat kortspel. Till en början var det lite klurigt att skriva testkod istället för kod för funktionalitet. När jag väl vande mig vid att använda PHPUnit så blev det ganska smidigt att jobba med. Jag gillar hur tydlig återkoppling man får när ett test misslyckas – det gör det lättare att felsöka.
+            Jag lyckades nå över 90% kodtäckning för några av mina modellklasser. Samtliga i min /Card uppnådde 100%, det var däremot varierande resultat i mina /Dice och /Game mappar.
+            De flesta av mina modellklasser var ganska testbara eftersom de har tydliga metoder och inte är beroende av yttre miljöer. Men vissa delar var svårare att testa eftersom de blandar logik med beroenden. För att förbättra testbarheten hade jag kunnat bryta ut logik till separata tjänster eller hjälpaklasser.
+            Ja, jag gjorde om några av mina klasser utifrån testerna, specifikt hur ess beräknades både i Bank och Player, detta gjorde testerna mer funktionella. Ja, jag tycker att testbar kod ofta går hand i hand med ren kod. Om en metod är för lång eller gör för mycket blir den både svårare att förstå och att testa.
+            Mitt TIL för detta kursmoment är hur viktigt det är att ha filerna på rätt ställe. Jag hade till en början inte lagt till mina modellklasser i Symfony-mappen, så PHPDoc genererades inte. Jag lärde mig också hur värdefullt det är att skriva tester samtidigt som man utvecklar – inte bara efteråt.
+        </p>
+    </section>
+
+    <section id="kmom05">
+        <h2>kmom05</h2>
+        <p>
+            Redovisning för kmom05...
+        </p>
+    </section>
+
+        <section id="kmom06">
+        <h2>kmom06</h2>
+        <p>
+            Redovisning för kmom06...
+        </p>
+    </section>
+
+        <section id="kmom07/10">
+        <h2>kmom07/10</h2>
+        <p>
+            Redovisning för kmom07/10...
+        </p>
+    </section>
+{% endblock %}

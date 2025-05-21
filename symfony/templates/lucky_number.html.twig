@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Magic number{% endblock %}
+
+{% block body %}
+    <h1>The crystal ball will give me a lucky magic number, hmmm what do I see?</h1>
+        <img src="{{ asset('img/magic.png') }}" alt="magic" class="about-img">
+    <h2>The number is....{{ number }}!!</h2>
+{% endblock %}
