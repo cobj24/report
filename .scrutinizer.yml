@@ -5,7 +5,7 @@ filter:
     excluded_paths: [vendor/*, test/*]
 
 build:
-    image: default-focal
+    image: default-jammy
 
     nodes:
         my-tests:
