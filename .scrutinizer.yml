@@ -15,11 +15,11 @@ build:
             dependencies:
                 before:
                     - curl -sS https://getcomposer.org/installer | php -- --2
-                    - mv composer.phar /usr/local/bin/composer
-                    - composer --version
+                    - php composer.phar --version
+                    - php composer.phar install
             tests:
                 override:
-                    - command: "composer phpunit"
+                    - command: "php composer.phar phpunit"
                       coverage:
                           file: "docs/coverage.clover"
                           format: "php-clover"
