@@ -19,3 +19,8 @@ build:
                       coverage:
                           file: "docs/coverage.clover"
                           format: "php-clover"
+
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
