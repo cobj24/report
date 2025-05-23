@@ -13,10 +13,10 @@ build:
                 php:
                     version: 8.3.3
             dependencies:
-                before:
+                override:
                     - curl -sS https://getcomposer.org/installer | php -- --2
                     - php composer.phar --version
-                    - php composer.phar install
+                    - php composer.phar install --no-interaction
             tests:
                 override:
                     - command: "php composer.phar phpunit"
@@ -25,6 +25,11 @@ build:
                           format: "php-clover"
 
         analysis:
+            dependencies:
+                override:
+                    - curl -sS https://getcomposer.org/installer | php -- --2
+                    - php composer.phar --version
+                    - php composer.phar install --no-interaction
             tests:
                 override:
                     - php-scrutinizer-run
