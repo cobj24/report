@@ -7,17 +7,21 @@ filter:
 build:
   image: default-bionic
 
-dependencies:
-  before:
+  before_commands:
     - composer self-update --2
     - composer install --ignore-platform-reqs --no-interaction
 
-tests:
-  override:
-    - command: "composer phpunit"
-      coverage:
-        file: "docs/coverage.clover"
-        format: "php-clover"
+  nodes:
+    my-tests:
+      environment:
+        php:
+          version: 8.3.3
+      tests:
+        override:
+          - command: "composer phpunit"
+            coverage:
+              file: "docs/coverage.clover"
+              format: "php-clover"
 
 checks:
   php:
