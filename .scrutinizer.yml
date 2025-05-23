@@ -1,3 +1,7 @@
+checks:
+  php:
+    code_rating: true
+
 imports:
   - php
 
@@ -23,6 +27,3 @@ build:
               file: "docs/coverage.clover"
               format: "php-clover"
 
-checks:
-  php:
-    code_rating: true
