@@ -12,19 +12,14 @@ build:
       environment:
         php:
           version: 8.3.3
-    analysis:
       tests:
         override:
-          - php-scrutinizer-run
+          - command: "composer phpunit"
+            coverage:
+              file: "docs/coverage.clover"
+              format: "php-clover"
 
   dependencies:
     before:
       - composer self-update --2
       - composer install --ignore-platform-reqs --no-interaction
-
-tests:
-  override:
-    - command: "composer phpunit"
-      coverage:
-        file: "docs/coverage.clover"
-        format: "php-clover"
