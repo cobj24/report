@@ -187,3 +187,47 @@ table.library img {
 .button-link:hover {
     background-color: #004f6a;
 }
+
+.six-c-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.six-c-box {
+    flex: 1 1 250px;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.metric-image img {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 1rem;
+}
+
+.scrutinizer-badges img {
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
+.metrics-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.metrics-table th,
+.metrics-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.metrics-table th {
+    background-color: #f0f0f0;
+}

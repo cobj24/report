@@ -1,8 +1,100 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Metrics{% endblock %}
+{% block title %}Kodkvalitet - Metrics{% endblock %}
 
 {% block body %}
-    <h1>Kodkvalitet</h1>
+<h1 class="page-title">Kodkvalitet och Clean Code</h1>
+
+<h2>Introduktion</h2>
+<p>För att skriva kod som är hållbar, lättläst och enkel att vidareutveckla arbetar man ofta med så kallad "Clean Code". Ett sätt att tänka kring detta är genom de sex C:na som beskriver viktiga egenskaper hos bra kod:</p>
+
+<div class="six-c-container">
+    <div class="six-c-box">
+        <h3>Clarity</h3>
+        <p>Tydlig och lättförståelig kod. Namn på variabler och funktioner ska spegla deras syfte.</p>
+    </div>
+    <div class="six-c-box">
+        <h3>Conciseness</h3>
+        <p>Koden ska vara kort och koncis, utan överflödiga rader eller logik.</p>
+    </div>
+    <div class="six-c-box">
+        <h3>Consistency</h3>
+        <p>Stil, struktur och namnkonventioner ska vara enhetliga i hela projektet.</p>
+    </div>
+    <div class="six-c-box">
+        <h3>Coverage</h3>
+        <p>Testtäckning – hur stor del av koden som testas automatiskt.</p>
+    </div>
+    <div class="six-c-box">
+        <h3>Correctness</h3>
+        <p>Kodens korrekthet – att den gör det den ska och inte innehåller buggar.</p>
+    </div>
+    <div class="six-c-box">
+        <h3>Changeability</h3>
+        <p>Hur lätt det är att ändra och vidareutveckla koden utan att introducera fel.</p>
+    </div>
+</div>
+
+<h2>Phpmetrics</h2>
+<p>Phpmetrics ger ett övergripande mått på kodens struktur, komplexitet och kvalitet. Här är tre identifierade förbättringspunkter:</p>
+
+<ol class="metric-findings">
+    <li><strong>Hög komplexitet:</strong> Klassen <code>App\Game\Game21</code> har en cyclomatic complexity på 12.</li>
+    <li><strong>Hög coupling:</strong> Klassen <code>App\Card\DeckOfCards</code> är beroende av flera andra klasser vilket kan försvåra testning och vidareutveckling.</li>
+    <li><strong>Låg maintainability:</strong> Klassen <code>App\Dice\Dice</code> har lågt maintainability index (MI = 45).</li>
+</ol>
+
+<div class="metric-image">
+    <img src="{{ asset('img/phpmetrics-screenshot.png') }}" alt="Phpmetrics visualisering" />
+</div>
+
+<h2>Scrutinizer</h2>
+<p>Analysen från Scrutinizer visar kodkvalitet, potentiella problem och förbättringsförslag. Nedan visas projektets badges:</p>
+
+<div class="scrutinizer-badges">
+    <a href="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt"><img src="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt/badges/quality-score.png?b=main" alt="Quality Score Badge"></a>
+    <a href="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt"><img src="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt/badges/coverage.png?b=main" alt="Coverage Badge"></a>
+    <a href="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt"><img src="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt/badges/build.png?b=main" alt="Build Badge"></a>
+</div>
+
+<h2>Förbättringar</h2>
+<p>Följande förbättringar har identifierats och implementerats:</p>
+
+<ol>
+    <li>Refaktorerat klassen <code>Game21</code> för att minska komplexitet.</li>
+    <li>Utökat tester för att öka kodtäckning från 21% till 35%.</li>
+    <li>Minskat coupling i <code>DeckOfCards</code> genom att extrahera beroenden.</li>
+</ol>
+
+<h3>Före och efter förbättringar</h3>
+<table class="metrics-table">
+    <thead>
+        <tr>
+            <th>Mätvärde</th>
+            <th>Före</th>
+            <th>Efter</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Code Coverage</td>
+            <td>21%</td>
+            <td>35%</td>
+        </tr>
+        <tr>
+            <td>Maintainability Index</td>
+            <td>52</td>
+            <td>78</td>
+        </tr>
+        <tr>
+            <td>Cyclomatic Complexity</td>
+            <td>12</td>
+            <td>5</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Diskussion</h2>
+<p>Att jobba aktivt med kodkvalitet och Clean Code via mätverktyg ger struktur och tydliga mål. Fördelarna är bland annat bättre läsbarhet, färre fel och enklare underhåll. Nackdelarna kan vara tidsåtgång och överfokus på siffror, men vinsterna över tid är stora. Tillsammans med kodgranskningar och tydliga kodkonventioner blir det ännu effektivare.</p>
 
 {% endblock %}
