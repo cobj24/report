@@ -12,18 +12,19 @@ build:
             environment:
                 php:
                     version: 8.3.3
-                    # version: 8.1.13
-                    # version: 8.1.17
-                    # version: 8.2.4
+            dependencies:
+                before:
+                    - curl -sS https://getcomposer.org/installer | php -- --2
+                    - mv composer.phar /usr/local/bin/composer
+                    - composer --version
+            tests:
+                override:
+                    - command: "composer phpunit"
+                      coverage:
+                          file: "docs/coverage.clover"
+                          format: "php-clover"
+
         analysis:
             tests:
                 override:
                     - php-scrutinizer-run
-                    #- phpcs-run # Not used, missing config file
-    tests:
-        override:
-            -   command: "composer phpunit"
-                # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
-                coverage:
-                    file: "docs/coverage.clover"
-                    format: "php-clover"
