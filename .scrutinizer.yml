@@ -26,5 +26,5 @@ build:
                 override:
                     - php-scrutinizer-run
 
-        tools:
-            external_code_coverage: true
+tools:
+    external_code_coverage: true
