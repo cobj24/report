@@ -10,7 +10,7 @@ build:
             tests:
                 override:
                     - command: "composer install"
-                    - command: "vendor/bin/phpunit --coverage-clover=coverage.clover"
+                    - command: "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.clover"
                       coverage:
                           file: "coverage.clover"
                           format: "php-clover"
