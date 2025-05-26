@@ -1,32 +1,29 @@
+imports:
+    - php
+
 filter:
     excluded_paths: [vendor/*, test/*]
 
 build:
-    nodes:
-        coverage:
-            environment:
-                php:
-                    version: 8.3.3
-            tests:
-                override:
-                    - command: "composer install"
-                    - command: "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.clover"
-                      coverage:
-                          file: "coverage.clover"
-                          format: "php-clover"
+    image: default-focal
 
-        analysis:
+    nodes:
+        my-tests:
             environment:
                 php:
                     version: 8.3.3
+                    # version: 8.1.13
+                    # version: 8.1.17
+                    # version: 8.2.4
+        analysis:
             tests:
                 override:
                     - php-scrutinizer-run
-
-tools:
-    external_code_coverage: true
-    php_code_sniffer: true
-    php_cpd: true
-    php_mess_detector: true
-    php_pdepend: true
-    php_analyzer: true
+                    #- phpcs-run # Not used, missing config file
+    tests:
+        override:
+            -   command: "composer phpunit"
+                # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
+                coverage:
+                    file: "docs/coverage.clover"
+                    format: "php-clover"
