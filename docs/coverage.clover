@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747989473">
-  <project timestamp="1747989473" name="Clover Coverage">
+<coverage generated="1748251440">
+  <project timestamp="1748251440" name="Clover Coverage">
     <package name="App\Card">
       <file name="/home/cob/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
         <class name="App\Card\Card" namespace="App\Card">
@@ -464,8 +464,8 @@
         <line num="51" type="stmt" count="1"/>
         <line num="52" type="stmt" count="1"/>
         <line num="54" type="stmt" count="1"/>
-        <line num="55" type="stmt" count="0"/>
-        <line num="57" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="0"/>
         <line num="61" type="method" name="getPlayer" visibility="public" complexity="1" crap="1" count="3"/>
         <line num="63" type="stmt" count="3"/>
         <line num="66" type="method" name="getBank" visibility="public" complexity="1" crap="1" count="1"/>
@@ -491,8 +491,8 @@
         <line num="50" type="stmt" count="11"/>
         <line num="51" type="stmt" count="11"/>
         <line num="52" type="stmt" count="8"/>
-        <line num="53" type="stmt" count="7"/>
-        <line num="54" type="stmt" count="5"/>
+        <line num="53" type="stmt" count="6"/>
+        <line num="54" type="stmt" count="4"/>
         <line num="55" type="stmt" count="4"/>
         <line num="56" type="stmt" count="4"/>
         <line num="60" type="stmt" count="13"/>
