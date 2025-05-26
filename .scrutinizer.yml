@@ -2,20 +2,17 @@ filter:
     excluded_paths: [vendor/*, test/*]
 
 build:
-    image: default-jammy
-
     nodes:
-        my-tests:
+        coverage:
             environment:
                 php:
                     version: 8.3.3
             tests:
                 override:
-                    - command: "php -v"
                     - command: "composer install"
-                    - command: "composer phpunit"
+                    - command: "vendor/bin/phpunit --coverage-clover=coverage.clover"
                       coverage:
-                          file: "docs/coverage.clover"
+                          file: "coverage.clover"
                           format: "php-clover"
 
         analysis:
