@@ -11,41 +11,46 @@
 <div class="six-c-container">
     <div class="six-c-box">
         <h3>Clarity</h3>
-        <p>Tydlig och lättförståelig kod. Namn på variabler och funktioner ska spegla deras syfte.</p>
+        <p>Tydlig och lättförståelig kod. Namn på variabler och funktioner ska spegla deras syfte. Namn som DeckOfCards, Player och Game21 är beskrivande och ökar tydligheten.</p>
     </div>
     <div class="six-c-box">
         <h3>Conciseness</h3>
-        <p>Koden ska vara kort och koncis, utan överflödiga rader eller logik.</p>
+        <p>Koden ska vara kort och koncis, utan överflödiga rader eller logik. Metoder i Player har i genomsnitt 9 rader kod enligt Phpmetrics.</p>
     </div>
     <div class="six-c-box">
         <h3>Consistency</h3>
-        <p>Stil, struktur och namnkonventioner ska vara enhetliga i hela projektet.</p>
+        <p>Stil, struktur och namnkonventioner ska vara enhetliga i hela projektet. Projektet använder PSR-4-autoloading och Symfony-standarder.</p>
     </div>
     <div class="six-c-box">
         <h3>Coverage</h3>
-        <p>Testtäckning – hur stor del av koden som testas automatiskt.</p>
+        <p>Testtäckning – hur stor del av koden som testas automatiskt. Enligt Phpmetrics: 8 tester, 34,78 % av klasserna testas.</p>
     </div>
     <div class="six-c-box">
         <h3>Correctness</h3>
-        <p>Kodens korrekthet – att den gör det den ska och inte innehåller buggar.</p>
+        <p>Kodens korrekthet – att den gör det den ska och inte innehåller buggar. Enhetstester validerar funktionaliteten för Game21, DeckOfCards, etc.</p>
     </div>
     <div class="six-c-box">
         <h3>Changeability</h3>
-        <p>Hur lätt det är att ändra och vidareutveckla koden utan att introducera fel.</p>
+        <p>Hur lätt det är att ändra och vidareutveckla koden utan att introducera fel. Hög coupling i vissa klasser försvårar detta. Se nedan under Phpmetrics.</p>
     </div>
 </div>
 
 <h2>Phpmetrics</h2>
-<p>Phpmetrics ger ett övergripande mått på kodens struktur, komplexitet och kvalitet. Här är tre identifierade förbättringspunkter:</p>
+<p>Phpmetrics analyserar kodens struktur, komplexitet och kvalitet. Här är några nyckelvärden från analysen:</p>
 
 <ol class="metric-findings">
-    <li><strong>Hög komplexitet:</strong> Klassen <code>App\Game\Game21</code> har en cyclomatic complexity på 12.</li>
-    <li><strong>Hög coupling:</strong> Klassen <code>App\Card\DeckOfCards</code> är beroende av flera andra klasser vilket kan försvåra testning och vidareutveckling.</li>
-    <li><strong>Låg maintainability:</strong> Klassen <code>App\Dice\Dice</code> har lågt maintainability index (MI = 45).</li>
+    <li><strong>Total kodrad:</strong> 794 rader kod varav 644 är logiska.</li>
+    <li><strong>Klasser:</strong> 23 stycken, med totalt 69 metoder.</li>
+    <li><strong>Kommentarstäckning:</strong> 152 rader.</li>
+    <li><strong>Testtäckning (beräknad via klassanrop):</strong> 34,78 %.</li>
 </ol>
+<p>Identifierade svagheter:</p>
+    <li><strong>Cyclomatic Complexity:</strong> Klassen App\Game\Game21 hade tidigare en komplexitet på 12. Nu ligger snittet på 2.26, men det finns fortfarande enstaka metoder som är för komplexa och kan delas upp.</li>
+    <li><strong>Coupling:</strong> App\Card\DeckOfCards har hög efferent coupling – beroenden till många andra klasser. Detta försämrar Changeability. Medelvärde: 2.48 (borde helst ligga <2).</li>
+    <li><strong>Maintainability:</strong> Klassen App\Dice\Dice har låg MI = 45, vilket tyder på att den är svår att underhålla. Ett MI över 70 är önskvärt.</li>
 
 <div class="metric-image">
-    <img src="{{ asset('img/phpmetrics-screenshot.png') }}" alt="Phpmetrics visualisering" />
+    <img src="{{ asset('img/phpmetrics.PNG') }}" alt="metrics" class="metrics-img">
 </div>
 
 <h2>Scrutinizer</h2>
