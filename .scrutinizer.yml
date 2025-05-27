@@ -1,34 +1,29 @@
+imports:
+    - php
+
 filter:
-    excluded_paths: [vendor/*, test/*]
+    excluded_paths: [vendor/*, tests/*]
 
 build:
-    image: default-jammy
-
-    cache:
-        directories:
-            - ~/.composer/cache/
-            # Ta bort yarn cache om du inte använder yarn
-            # - ~/.cache/yarn
+    image: default-bionic
 
     nodes:
         my-tests:
             environment:
                 php:
                     version: 8.3.3
-            tests:
-                override:
-                    - command: "php -v"
-                    - command: "composer install"
-                    - command: "mkdir -p public/build && echo '{}' > public/build/entrypoints.json"
-                    - command: "composer phpunit"
-                      coverage:
-                          file: "docs/coverage.clover"
-                          format: "php-clover"
-
+                    # version: 8.1.13
+                    # version: 8.1.17
+                    # version: 8.2.4
         analysis:
-            environment:
-                php:
-                    version: 8.3.3
             tests:
                 override:
                     - php-scrutinizer-run
+                    #- phpcs-run # Not used, missing config file
+    tests:
+        override:
+            -   command: "composer phpunit"
+                # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
+                coverage:
+                    file: "docs/coverage.clover"
+                    format: "php-clover"
