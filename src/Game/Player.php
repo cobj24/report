@@ -77,4 +77,15 @@ class Player
     {
         return $this->hand;
     }
+
+    /**
+     * Lägger till ett specifikt kort i spelarens hand, används vid testning.
+     *
+     * @param int|string $value Kortets värde, t.ex. 2–10, "J", "Q", "K", "A"
+     */
+    public function drawCardFromValue(int|string $value): void
+    {
+        $card = new \App\Card\Card("♥", $value);
+        $this->hand->addCard($card);
+    }
 }

@@ -6,16 +6,18 @@ class DeckOfCards
 {
     private array $cards = [];
 
-    public function __construct(bool $useGraphics = false)
+    public function __construct(CardFactory|bool $factory = null)
     {
+        if ($factory === true || $factory === null) {
+            $factory = new CardFactory();
+        }
+
         $suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
         $values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
         foreach ($suits as $suit) {
             foreach ($values as $value) {
-                $this->cards[] = $useGraphics
-                    ? new CardGraphic($suit, $value)
-                    : new Card($suit, $value);
+                 $this->cards[] = new CardGraphic($suit, $value);
             }
         }
     }

@@ -1,7 +1,5 @@
 <?php
 
-// src/Game/Game21.php
-
 namespace App\Game;
 
 use App\Card\DeckOfCards;
@@ -15,6 +13,11 @@ class Game21
 
     public function __construct()
     {
+        $this->initGame();
+    }
+
+    private function initGame(): void
+    {
         $this->deck = new DeckOfCards(true);
         $this->deck->shuffle();
 
@@ -24,26 +27,41 @@ class Game21
 
     public function startRound(): void
     {
-        if (0 === $this->player->getScore()) {
+        if ($this->isFirstTurn()) {
             $this->player->drawCard($this->deck);
         }
+    }
+
+    private function isFirstTurn(): bool
+    {
+        return $this->player->getScore() === 0;
     }
 
     public function playerDraw(): void
     {
         $this->player->drawCard($this->deck);
-        if ($this->player->getScore() > 21) {
+
+        if ($this->isPlayerBusted()) {
             $this->status = 'bank_wins';
         }
     }
 
+    private function isPlayerBusted(): bool
+    {
+        return $this->player->getScore() > 21;
+    }
+
     public function playerStay(): void
+    {
+        $this->bankDrawUntilLimit();
+        $this->determineWinner();
+    }
+
+    private function bankDrawUntilLimit(): void
     {
         while ($this->bank->getScore() < 17) {
             $this->bank->drawCard($this->deck);
         }
-
-        $this->determineWinner();
     }
 
     private function determineWinner(): void
@@ -51,13 +69,19 @@ class Game21
         $playerScore = $this->player->getScore();
         $bankScore = $this->bank->getScore();
 
-        if ($bankScore > 21 || $playerScore > $bankScore) {
+        if ($this->bankIsBusted() || $playerScore > $bankScore) {
             $this->status = 'player_wins';
         } else {
             $this->status = 'bank_wins';
         }
     }
 
+    private function bankIsBusted(): bool
+    {
+        return $this->bank->getScore() > 21;
+    }
+
+    // Getters
     public function getPlayer(): Player
     {
         return $this->player;

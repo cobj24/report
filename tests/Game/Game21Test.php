@@ -54,4 +54,40 @@ class Game21Test extends TestCase
         $status = $game->getStatus();
         $this->assertContains($status, ['player_wins', 'bank_wins']);
     }
+
+    public function testPlayerWinsAgainstBank(): void
+    {
+        $game = new Game21();
+
+        $game->getPlayer()->drawCardFromValue(10);
+        $game->getPlayer()->drawCardFromValue(9);
+
+        $game->getBank()->drawCardFromValue(10);
+        $game->getBank()->drawCardFromValue(7);
+
+        $ref = new \ReflectionClass($game);
+        $method = $ref->getMethod('determineWinner');
+        $method->setAccessible(true);
+        $method->invoke($game);
+
+        $this->assertEquals('player_wins', $game->getStatus());
+    }
+
+    public function testBankWinsWithHigherScore(): void
+    {
+        $game = new Game21();
+
+        $game->getPlayer()->drawCardFromValue(10);
+        $game->getPlayer()->drawCardFromValue(5);
+
+        $game->getBank()->drawCardFromValue(10);
+        $game->getBank()->drawCardFromValue(7);
+
+        $ref = new \ReflectionClass($game);
+        $method = $ref->getMethod('determineWinner');
+        $method->setAccessible(true);
+        $method->invoke($game);
+
+        $this->assertEquals('bank_wins', $game->getStatus());
+    }
 }

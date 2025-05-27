@@ -6,25 +6,30 @@ use PHPUnit\Framework\TestCase;
 use App\Card\DeckOfCards;
 use App\Card\CardGraphic;
 use App\Card\Card;
+use App\Card\CardFactory;
+use App\Game\Player;
 
 class DeckOfCardsTest extends TestCase
 {
     public function testDeckCreation(): void
     {
-        $deck = new DeckOfCards();
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory);
         $this->assertCount(52, $deck->getCards());
     }
 
     public function testDeckCreationWithGraphics(): void
     {
-        $deck = new DeckOfCards(true);
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory, true);
         $this->assertCount(52, $deck->getCards());
         $this->assertInstanceOf(CardGraphic::class, $deck->getCards()[0]);
     }
 
     public function testShuffle(): void
     {
-        $deck = new DeckOfCards();
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory);
         $cardsBeforeShuffle = $deck->getCards();
         $deck->shuffle();
         $cardsAfterShuffle = $deck->getCards();
@@ -32,18 +37,23 @@ class DeckOfCardsTest extends TestCase
         $this->assertNotEquals($cardsBeforeShuffle, $cardsAfterShuffle);
     }
 
-    public function testDrawCard(): void
+    public function testDrawCardFromDeck(): void
     {
-        $deck = new DeckOfCards();
-        $drawnCards = $deck->draw(5);
+        $player = new Player();
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory);
 
-        $this->assertCount(5, $drawnCards);
-        $this->assertCount(47, $deck->getCards());
+        $initialCount = $deck->count();
+        $player->drawCard($deck);
+
+        $this->assertEquals($initialCount - 1, $deck->count());
+        $this->assertGreaterThan(0, $player->getScore());
     }
 
     public function testDeckCount(): void
     {
-        $deck = new DeckOfCards();
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory);
         $this->assertEquals(52, $deck->count());
     }
 }

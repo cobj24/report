@@ -1,5 +1,9 @@
 ![mvc image](.img/web.jpg)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cobj24/report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/cobj24/report/)
+[![Code Coverage](https://scrutinizer-ci.com/g/cobj24/report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/cobj24/report/)
+[![Build Status](https://scrutinizer-ci.com/g/cobj24/report/badges/build.png?b=main)](https://scrutinizer-ci.com/g/cobj24/report/)
+
 # MVC-kurs: Webbapplikation i Symfony
 
 Det här är en webbplats byggd i PHP med Symfony-ramverket som en del av kursen **"oophp/mvc"** vid Blekinge Tekniska Högskola.

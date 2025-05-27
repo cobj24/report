@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
-use App\Card\DeckOfCards;
-use App\Repository\BookRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\BookRepository;
 
 class LuckyControllerJson extends AbstractController
 {
@@ -25,10 +22,10 @@ class LuckyControllerJson extends AbstractController
         ]);
     }
 
-    #[Route('/api', name: 'api_landing')]
-    public function apiLanding(): Response
+    #[Route('/api/game', name: 'api_game', methods: ['GET'])]
+    public function game(): JsonResponse
     {
-        return $this->render('api.html.twig');
+        return new JsonResponse(['status' => 'ok', 'message' => 'API game placeholder']);
     }
 
     #[Route('/api/quote', name: 'api_quote')]
@@ -50,77 +47,10 @@ class LuckyControllerJson extends AbstractController
         ]);
     }
 
-    #[Route('/api/deck', name: 'api_deck', methods: ['GET'])]
-    public function deck(SessionInterface $session): JsonResponse
+    #[Route('/api', name: 'api_landing')]
+    public function apiLanding(): Response
     {
-        $deck = $session->get('deck', new DeckOfCards(true));
-        return $this->json($deck->getCards());
-    }
-
-    #[Route('/api/deck/shuffle', name: 'api_shuffle', methods: ['POST'])]
-    public function shuffle(SessionInterface $session): JsonResponse
-    {
-        $deck = new DeckOfCards(true);
-        $deck->shuffle();
-        $session->set('deck', $deck);
-
-        return $this->json($deck->getCards());
-    }
-
-    #[Route('/api/deck/draw', name: 'api_draw_one', methods: ['POST'])]
-    public function drawOne(SessionInterface $session): JsonResponse
-    {
-        /** @var DeckOfCards $deck */
-        $deck = $session->get('deck', new DeckOfCards(true));
-        $drawn = $deck->draw();
-        $session->set('deck', $deck);
-
-        return $this->json([
-            'drawn' => $drawn,
-            'remaining' => $deck->count()
-        ]);
-    }
-
-    #[Route('/api/deck/draw/{number<\d+>}', name: 'api_draw_number', methods: ['POST'])]
-    public function drawNumber(SessionInterface $session, int $number): JsonResponse
-    {
-        /** @var DeckOfCards $deck */
-        $deck = $session->get('deck', new DeckOfCards(true));
-        $drawn = $deck->draw($number);
-        $session->set('deck', $deck);
-
-        return $this->json([
-            'drawn' => $drawn,
-            'remaining' => $deck->count()
-        ]);
-    }
-
-    #[Route('/api/game', name: 'api_game')]
-    public function gameStatus(SessionInterface $session): JsonResponse
-    {
-        $game = $session->get('game');
-
-        if (!$game) {
-            return $this->json([
-                'status' => 'no_game',
-                'message' => 'Ingen pågående spelomgång hittades.'
-            ]);
-        }
-
-        $playerHand = array_map(fn ($card) => (string)$card, $game->getPlayer()->getHand()->getCards());
-        $bankHand = array_map(fn ($card) => (string)$card, $game->getBank()->getHand()->getCards());
-
-        return $this->json([
-            'status' => $game->getStatus(),
-            'player' => [
-                'score' => $game->getPlayer()->getScore(),
-                'hand' => $playerHand
-            ],
-            'bank' => [
-                'score' => $game->getBank()->getScore(),
-                'hand' => $bankHand
-            ]
-        ]);
+        return $this->render('api.html.twig');
     }
 
     #[Route('/api/library/books', name: 'api_library_books', methods: ['GET'])]
@@ -150,14 +80,12 @@ class LuckyControllerJson extends AbstractController
             return $this->json(['error' => 'Book not found'], 404);
         }
 
-        $data = [
+        return $this->json([
             'id' => $book->getId(),
             'title' => $book->getTitle(),
             'isbn' => $book->getIsbn(),
             'author' => $book->getAuthor(),
             'image' => $book->getImage(),
-        ];
-
-        return $this->json($data);
+        ]);
     }
 }

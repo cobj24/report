@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 use App\Game\Bank;
 use App\Card\Card;
 use App\Card\DeckOfCards;
+use App\Card\CardFactory;
+
 
 class BankTest extends TestCase
 {
@@ -24,7 +26,8 @@ class BankTest extends TestCase
     public function testBankDrawsCardFromDeck(): void
     {
         $bank = new Bank();
-        $deck = new DeckOfCards();
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory);
 
         $initialDeckCount = $deck->count();
         $bank->drawCard($deck);

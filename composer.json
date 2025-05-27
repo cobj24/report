@@ -88,8 +88,8 @@
     "phpunit": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text --coverage-filter=src/",
     "phpmd": "tools/phpmd/vendor/bin/phpmd src,tests text tools/phpmd/phpmd.xml || true",
     "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
-    "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json",
-    "lint": [
+    "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json src",
+        "lint": [
         "@phpmd",
         "@phpstan"
     ],

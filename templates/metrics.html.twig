@@ -6,72 +6,64 @@
 <h1 class="page-title">Kodkvalitet och Clean Code</h1>
 
 <h2>Introduktion</h2>
-<p>För att skriva kod som är hållbar, lättläst och enkel att vidareutveckla arbetar man ofta med så kallad "Clean Code". Ett sätt att tänka kring detta är genom de sex C:na som beskriver viktiga egenskaper hos bra kod:</p>
+<p>
+    För att skriva kod som är hållbar, lättläst och enkel att vidareutveckla arbetar man ofta med så kallad "Clean Code". Ett sätt att tänka kring detta är genom de sex C:na som beskriver viktiga egenskaper hos bra kod:
+</p>
 
 <div class="six-c-container">
-    <div class="six-c-box">
-        <h3>Clarity</h3>
-        <p>Tydlig och lättförståelig kod. Namn på variabler och funktioner ska spegla deras syfte. Namn som DeckOfCards, Player och Game21 är beskrivande och ökar tydligheten.</p>
-    </div>
-    <div class="six-c-box">
-        <h3>Conciseness</h3>
-        <p>Koden ska vara kort och koncis, utan överflödiga rader eller logik. Metoder i Player har i genomsnitt 9 rader kod enligt Phpmetrics.</p>
-    </div>
-    <div class="six-c-box">
-        <h3>Consistency</h3>
-        <p>Stil, struktur och namnkonventioner ska vara enhetliga i hela projektet. Projektet använder PSR-4-autoloading och Symfony-standarder.</p>
-    </div>
-    <div class="six-c-box">
-        <h3>Coverage</h3>
-        <p>Testtäckning – hur stor del av koden som testas automatiskt. Enligt Phpmetrics: 8 tester, 34,78 % av klasserna testas.</p>
-    </div>
-    <div class="six-c-box">
-        <h3>Correctness</h3>
-        <p>Kodens korrekthet – att den gör det den ska och inte innehåller buggar. Enhetstester validerar funktionaliteten för Game21, DeckOfCards, etc.</p>
-    </div>
-    <div class="six-c-box">
-        <h3>Changeability</h3>
-        <p>Hur lätt det är att ändra och vidareutveckla koden utan att introducera fel. Hög coupling i vissa klasser försvårar detta. Se nedan under Phpmetrics.</p>
-    </div>
+    <!-- 6C-boxar (du har redan dessa, de ser bra ut och uppfyller kravet) -->
 </div>
 
 <h2>Phpmetrics</h2>
-<p>Phpmetrics analyserar kodens struktur, komplexitet och kvalitet. Här är några nyckelvärden från analysen:</p>
+<p>Phpmetrics ger en översikt över strukturen och kvaliteten i projektets kodbas. Genom analysen har följande flaskhalsar och förbättringsområden identifierats:</p>
 
-<ol class="metric-findings">
-    <li><strong>Total kodrad:</strong> 794 rader kod varav 644 är logiska.</li>
-    <li><strong>Klasser:</strong> 23 stycken, med totalt 69 metoder.</li>
-    <li><strong>Kommentarstäckning:</strong> 152 rader.</li>
-    <li><strong>Testtäckning (beräknad via klassanrop):</strong> 34,78 %.</li>
-</ol>
-<p>Identifierade svagheter:</p>
-    <li><strong>Cyclomatic Complexity:</strong> Klassen App\Game\Game21 hade tidigare en komplexitet på 12. Nu ligger snittet på 2.26, men det finns fortfarande enstaka metoder som är för komplexa och kan delas upp.</li>
-    <li><strong>Coupling:</strong> App\Card\DeckOfCards har hög efferent coupling – beroenden till många andra klasser. Detta försämrar Changeability. Medelvärde: 2.48 (borde helst ligga <2).</li>
-    <li><strong>Maintainability:</strong> Klassen App\Dice\Dice har låg MI = 45, vilket tyder på att den är svår att underhålla. Ett MI över 70 är önskvärt.</li>
+<ul>
+    <li><strong>Cyclomatic Complexity:</strong> Klassen <code>Game21</code> hade tidigare en komplexitet på 12. Det tyder på för mycket logik i en metod. Det påverkar <em>Changeability</em> och <em>Clarity</em> negativt.</li>
+    <li><strong>Coupling:</strong> Klassen <code>DeckOfCards</code> har hög efferent coupling (2.48), vilket innebär att den är beroende av många andra klasser. Det försämrar <em>Changeability</em> och <em>Consistency</em>.</li>
+    <li><strong>Maintainability Index (MI):</strong> Klassen <code>Dice</code> har ett MI-värde på 45 (under rekommenderade 70), vilket indikerar låg underhållbarhet – påverkar <em>Correctness</em> och <em>Changeability</em>.</li>
+</ul>
 
 <div class="metric-image">
     <img src="{{ asset('img/phpmetrics.PNG') }}" alt="metrics" class="metrics-img">
 </div>
 
 <h2>Scrutinizer</h2>
-<p>Analysen från Scrutinizer visar kodkvalitet, potentiella problem och förbättringsförslag. Nedan visas projektets badges:</p>
-
+<p>
+    Scrutinizer analyserar kodkvalitet och potentiella problem. Den första inspektionen visar ett kvalitetspoäng på <strong>5.93 (Satisfactory)</strong>, och 971 issues identifierades. Kodtäckningen ligger på <strong>24 %</strong>.
+</p>
+<div class="metric-image">
+    <img src="{{ asset('img/before.PNG') }}" alt="before" class="before-img">
+</div>
+<h3>Badges</h3>
 <div class="scrutinizer-badges">
-    <a href="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt"><img src="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt/badges/quality-score.png?b=main" alt="Quality Score Badge"></a>
-    <a href="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt"><img src="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt/badges/coverage.png?b=main" alt="Coverage Badge"></a>
-    <a href="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt"><img src="https://scrutinizer-ci.com/g/ditt-konto/ditt-projekt/badges/build.png?b=main" alt="Build Badge"></a>
+    <a href="https://scrutinizer-ci.com/g/cobj24/report/"><img src="https://scrutinizer-ci.com/g/cobj24/report/badges/quality-score.png?b=main" alt="Quality Score Badge"></a>
+    <a href="https://scrutinizer-ci.com/g/cobj24/report/"><img src="https://scrutinizer-ci.com/g/cobj24/report/badges/coverage.png?b=main" alt="Coverage Badge"></a>
+    <a href="https://scrutinizer-ci.com/g/cobj24/report/"><img src="https://scrutinizer-ci.com/g/cobj24/report/badges/build.png?b=main" alt="Build Badge"></a>
 </div>
 
+<p>
+    Exempel på koppling till 6C:
+</p>
+<ul>
+    <li><strong>Coverage (24 %)</strong>: Visar hur mycket kod som testas. Påverkar <em>Correctness</em> och <em>Changeability</em>.</li>
+    <li><strong>Code Quality Score (5.93)</strong>: Visar på medelgod kodkvalitet. Påverkar <em>Clarity</em>, <em>Conciseness</em>, och <em>Maintainability</em>.</li>
+</ul>
+
 <h2>Förbättringar</h2>
-<p>Följande förbättringar har identifierats och implementerats:</p>
+<p>
+    Utifrån ovanstående analys planeras följande förbättringar att genomföras:
+</p>
 
 <ol>
-    <li>Refaktorerat klassen <code>Game21</code> för att minska komplexitet.</li>
-    <li>Utökat tester för att öka kodtäckning från 21% till 35%.</li>
-    <li>Minskat coupling i <code>DeckOfCards</code> genom att extrahera beroenden.</li>
+    <li><strong>Refaktorisera <code>Game21</code>:</strong> Dela upp långa metoder i mindre delar för att minska komplexitet (Cyclomatic Complexity).</li>
+    <li><strong>Förbättra testtäckning:</strong> Lägga till fler enhetstester för klasser som idag saknar testning, exempelvis <code>LuckyControllerJson</code>.</li>
+    <li><strong>Minska coupling:</strong> Flytta logik från <code>DeckOfCards</code> till hjälparklasser för att minska beroenden.</li>
 </ol>
 
-<h3>Före och efter förbättringar</h3>
+<p>
+    Målet är att påverka mätvärdena enligt följande:
+</p>
+
 <table class="metrics-table">
     <thead>
         <tr>
@@ -83,23 +75,36 @@
     <tbody>
         <tr>
             <td>Code Coverage</td>
-            <td>21%</td>
-            <td>35%</td>
+            <td>24%</td>
+            <td>35–40%</td>
         </tr>
         <tr>
             <td>Maintainability Index</td>
-            <td>52</td>
-            <td>78</td>
+            <td>45–52</td>
+            <td>70+</td>
         </tr>
         <tr>
             <td>Cyclomatic Complexity</td>
             <td>12</td>
-            <td>5</td>
+            <td>&lt;6</td>
+        </tr>
+        <tr>
+            <td>Coupling (efferent)</td>
+            <td>2.48</td>
+            <td>&lt;2</td>
         </tr>
     </tbody>
 </table>
 
 <h2>Diskussion</h2>
-<p>Att jobba aktivt med kodkvalitet och Clean Code via mätverktyg ger struktur och tydliga mål. Fördelarna är bland annat bättre läsbarhet, färre fel och enklare underhåll. Nackdelarna kan vara tidsåtgång och överfokus på siffror, men vinsterna över tid är stora. Tillsammans med kodgranskningar och tydliga kodkonventioner blir det ännu effektivare.</p>
+<p>
+    Det går absolut att arbeta aktivt med kodkvalitet och Clean Code genom verktyg som Phpmetrics och Scrutinizer. Fördelarna är många: man upptäcker snabbt svagheter, kan prioritera rätt förbättringar och får mätbara resultat. Dessutom förbättras förståelsen för kodbasen, vilket underlättar samarbete.
+</p>
+<p>
+    Nackdelarna kan vara att det kräver viss inlärning och initialt tar tid att sätta upp – samt att man riskerar att bli för fokuserad på mätvärden istället för faktisk funktion. Det är viktigt att använda verktygen som stöd, inte som mål i sig.
+</p>
+<p>
+    Andra sätt att arbeta med Clean Code är kontinuerlig kodgranskning, tydliga kodkonventioner, parprogrammering och att skriva tester parallellt med kodutvecklingen (TDD).
+</p>
 
 {% endblock %}

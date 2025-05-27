@@ -3,16 +3,22 @@
 namespace App\Controller;
 
 use App\Card\DeckOfCards;
+use App\Card\CardFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 class CardController extends AbstractController
 {
+    private CardFactory $cardFactory;
+
+    public function __construct(CardFactory $cardFactory)
+    {
+        $this->cardFactory = $cardFactory;
+    }
     #[Route('/card', name: 'card_home')]
-    public function index(): Response
+    public function home(): Response
     {
         return $this->render('card/index.html.twig');
     }
@@ -20,14 +26,20 @@ class CardController extends AbstractController
     #[Route('/card/deck', name: 'card_deck')]
     public function deck(SessionInterface $session): Response
     {
-        $deck = $session->get('deck', new DeckOfCards(true));
+        $deck = $session->get('deck');
+
+        if (!$deck) {
+            $deck = new DeckOfCards($this->cardFactory);
+            $session->set('deck', $deck);
+        }
+
         return $this->render('card/deck.html.twig', ['cards' => $deck->getCards()]);
     }
 
     #[Route('/card/deck/shuffle', name: 'card_shuffle')]
     public function shuffle(SessionInterface $session): Response
     {
-        $deck = new DeckOfCards(true);
+        $deck = new DeckOfCards($this->cardFactory);
         $deck->shuffle();
         $session->set('deck', $deck);
 
@@ -40,7 +52,7 @@ class CardController extends AbstractController
     public function drawOne(SessionInterface $session): Response
     {
         /** @var DeckOfCards $deck */
-        $deck = $session->get('deck', new DeckOfCards(true));
+        $deck = $session->get('deck', new DeckOfCards($this->cardFactory));
         $drawn = $deck->draw();
         $session->set('deck', $deck);
 
@@ -54,7 +66,7 @@ class CardController extends AbstractController
     public function drawNumber(SessionInterface $session, int $number): Response
     {
         /** @var DeckOfCards $deck */
-        $deck = $session->get('deck', new DeckOfCards(true));
+        $deck = $session->get('deck', new DeckOfCards($this->cardFactory));
         $drawn = $deck->draw($number);
         $session->set('deck', $deck);
 

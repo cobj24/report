@@ -7,6 +7,8 @@ use App\Game\Player;
 use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use App\Card\CardFactory;
+
 
 class PlayerTest extends TestCase
 {
@@ -65,7 +67,8 @@ class PlayerTest extends TestCase
     public function testDrawCardFromDeck(): void
     {
         $player = new Player();
-        $deck = new DeckOfCards();
+        $factory = new CardFactory();
+        $deck = new DeckOfCards($factory);
 
         $initialCount = $deck->count();
         $player->drawCard($deck);
