@@ -13,7 +13,7 @@ build:
                 override:
                     - command: "php -v"
                     - command: "composer install"
-                    - command: "composer phpunit"
+                    - command: "./vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
                       coverage:
                           file: "docs/coverage.clover"
                           format: "php-clover"
@@ -27,7 +27,6 @@ build:
                     - php-scrutinizer-run
 
 tools:
-    external_code_coverage: true
     php_code_sniffer: true
     php_cpd: true
     php_mess_detector: true
