@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\BufferedOutput;
 use App\Entity\Book;
 use App\Form\BookForm;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/library')]
@@ -102,6 +102,7 @@ final class BookController extends AbstractController
         }
 
         $this->addFlash('success', 'Databasen har återställts till ursprungligt innehåll.');
+
         return $this->redirectToRoute('app_book_index');
     }
 }

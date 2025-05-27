@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
+use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\BookRepository;
 
 class LuckyControllerJson extends AbstractController
 {
@@ -18,7 +18,7 @@ class LuckyControllerJson extends AbstractController
         return new JsonResponse([
             'lucky_number' => $number,
             'date' => (new \DateTime())->format('Y-m-d'),
-            'timestamp' => (new \DateTime())->format('H:i:s')
+            'timestamp' => (new \DateTime())->format('H:i:s'),
         ]);
     }
 
@@ -32,9 +32,9 @@ class LuckyControllerJson extends AbstractController
     public function quote(): JsonResponse
     {
         $quotes = [
-            "Code is poetry.",
+            'Code is poetry.',
             "Don't repeat yourself. Unless it’s coffee.",
-            "Simplicity is the soul of efficiency.",
+            'Simplicity is the soul of efficiency.',
         ];
 
         $randomQuote = $quotes[array_rand($quotes)];

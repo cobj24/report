@@ -9,14 +9,14 @@
         <div class="drawn-cards">
             {% for card in cards %}
                 {% set suit = card.getSuit()|lower %}
-                <span class="playing-card {{ suit }}">{{ card }}</span>
+                <span class="drawn-card {{ suit }}">{{ card }}</span> {# Ändrat från playing-card till drawn-card #}
             {% endfor %}
         </div>
     {% else %}
         <p>Inga kort drogs.</p>
     {% endif %}
 
-    <p><strong>Kvar i leken:</strong> {{ remaining }}</p>
+    <p><strong>Kvar i leken:</strong> <span class="remaining-count">{{ remaining }}</span></p> {# La till remaining-count #}
 
     <a href="{{ app.request.basePath ~ path('card_deck') }}">Tillbaka till kortleken</a>
 {% endblock %}

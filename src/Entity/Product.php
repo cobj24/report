@@ -32,6 +32,7 @@ class Product
     public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -43,6 +44,7 @@ class Product
     public function setValue(int $value): static
     {
         $this->value = $value;
+
         return $this;
     }
 }

@@ -9,7 +9,7 @@
         <div class="drawn-cards">
             {% for card in cards %}
                 {% set suit = card.getSuit()|lower %}
-                <span class="playing-card {{ suit }}">{{ card }}</span>
+                <span class="drawn-card {{ suit }}">{{ card }}</span> {# ändrat från playing-card till drawn-card #}
             {% endfor %}
         </div>
     {% else %}

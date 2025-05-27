@@ -33,7 +33,7 @@ class DeckControllerTest extends WebTestCase
     public function testDrawOneCardFromDeck(): void
     {
         $client = static::createClient();
-        $client->request('POST', '/api/deck/shuffle'); // ensure deck is initialized
+        $client->request('POST', '/api/deck/shuffle');
 
         $client->request('POST', '/api/deck/draw');
         $this->assertResponseIsSuccessful();
@@ -47,7 +47,7 @@ class DeckControllerTest extends WebTestCase
     public function testDrawMultipleCards(): void
     {
         $client = static::createClient();
-        $client->request('POST', '/api/deck/shuffle'); // reset deck
+        $client->request('POST', '/api/deck/shuffle');
 
         $client->request('POST', '/api/deck/draw/5');
         $this->assertResponseIsSuccessful();

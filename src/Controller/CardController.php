@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Card\DeckOfCards;
 use App\Card\CardFactory;
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 
 class CardController extends AbstractController
 {
@@ -17,6 +17,7 @@ class CardController extends AbstractController
     {
         $this->cardFactory = $cardFactory;
     }
+
     #[Route('/card', name: 'card_home')]
     public function home(): Response
     {
@@ -44,7 +45,7 @@ class CardController extends AbstractController
         $session->set('deck', $deck);
 
         return $this->render('card/deck.html.twig', [
-            'cards' => $deck->getCards()
+            'cards' => $deck->getCards(),
         ]);
     }
 
@@ -58,7 +59,7 @@ class CardController extends AbstractController
 
         return $this->render('card/draw.html.twig', [
             'cards' => $drawn,
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 
@@ -72,7 +73,7 @@ class CardController extends AbstractController
 
         return $this->render('card/draw.html.twig', [
             'cards' => $drawn,
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 
@@ -81,6 +82,7 @@ class CardController extends AbstractController
     {
         $session->clear();
         $this->addFlash('success', 'Sessionen är raderad!');
+
         return $this->redirectToRoute('card_home');
     }
 
@@ -88,7 +90,7 @@ class CardController extends AbstractController
     public function sessionDebug(SessionInterface $session): Response
     {
         return $this->render('session/debug.html.twig', [
-            'session' => $session->all()
+            'session' => $session->all(),
         ]);
     }
 }

@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kortspel{% endblock %}
-
 {% block body %}
+    {# Flashmeddelanden #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <h1>Välkommen till kortspelsapplikationen</h1>
 
     <p>Den här applikationen hanterar en klassisk fransk-engelsk kortlek med hjälp av PHP-klasser integrerade i Symfony. Kortleken sparas i sessionen och kan visas, blandas och dra kort ifrån.</p>

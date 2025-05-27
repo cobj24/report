@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Card\DeckOfCards;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DeckController extends AbstractController
@@ -14,6 +14,7 @@ class DeckController extends AbstractController
     public function deck(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck', new DeckOfCards(true));
+
         return $this->json($deck->getCards());
     }
 
@@ -37,7 +38,7 @@ class DeckController extends AbstractController
 
         return $this->json([
             'drawn' => $drawn,
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 
@@ -51,7 +52,7 @@ class DeckController extends AbstractController
 
         return $this->json([
             'drawn' => $drawn,
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 }

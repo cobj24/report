@@ -7,9 +7,9 @@ namespace App\Controller;
 use App\Game\Game21;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends AbstractController
 {
@@ -32,7 +32,7 @@ class GameController extends AbstractController
         return $this->render('game/play.html.twig', [
             'player' => $game->getPlayer(),
             'bank' => $game->getBank(),
-            'status' => $game->getStatus()
+            'status' => $game->getStatus(),
         ]);
     }
 
@@ -40,6 +40,7 @@ class GameController extends AbstractController
     public function reset(SessionInterface $session): Response
     {
         $session->remove('game');
+
         return $this->redirectToRoute('game_play');
     }
 
@@ -49,7 +50,7 @@ class GameController extends AbstractController
         return $this->render('game/start.html.twig');
     }
 
-    #[Route("/game/doc", name: "game_doc")]
+    #[Route('/game/doc', name: 'game_doc')]
     public function doc(): Response
     {
         return $this->render('game/doc.html.twig');

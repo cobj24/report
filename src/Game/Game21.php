@@ -34,7 +34,7 @@ class Game21
 
     private function isFirstTurn(): bool
     {
-        return $this->player->getScore() === 0;
+        return 0 === $this->player->getScore();
     }
 
     public function playerDraw(): void
@@ -81,7 +81,6 @@ class Game21
         return $this->bank->getScore() > 21;
     }
 
-    // Getters
     public function getPlayer(): Player
     {
         return $this->player;

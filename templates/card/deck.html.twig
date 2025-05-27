@@ -6,7 +6,7 @@
 <div class="deck">
     {% for card in cards %}
         {% set suit = card.getSuit()|lower %}
-        <span class="playing-card {{ suit }}">{{ card }}</span>
+        <span class="card {{ suit }}">{{ card }}</span>
     {% endfor %}
 </div>
 {% endblock %}

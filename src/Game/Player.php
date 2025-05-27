@@ -85,7 +85,7 @@ class Player
      */
     public function drawCardFromValue(int|string $value): void
     {
-        $card = new \App\Card\Card("♥", $value);
+        $card = new \App\Card\Card('♥', $value);
         $this->hand->addCard($card);
     }
 }

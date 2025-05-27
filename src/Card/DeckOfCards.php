@@ -6,9 +6,9 @@ class DeckOfCards
 {
     private array $cards = [];
 
-    public function __construct(CardFactory|bool $factory = null)
+    public function __construct(CardFactory|bool|null $factory = null)
     {
-        if ($factory === true || $factory === null) {
+        if (true === $factory || null === $factory) {
             $factory = new CardFactory();
         }
 
@@ -17,7 +17,7 @@ class DeckOfCards
 
         foreach ($suits as $suit) {
             foreach ($values as $value) {
-                 $this->cards[] = new CardGraphic($suit, $value);
+                $this->cards[] = new CardGraphic($suit, $value);
             }
         }
     }

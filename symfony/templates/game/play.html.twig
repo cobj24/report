@@ -12,7 +12,7 @@
         <div class="drawn-cards">
             {% for card in player.getHand.getCards %}
                 {% set suit = card.getSuit()|lower %}
-                <span class="playing-card {{ suit }}">{{ card }}</span>
+                <span class="drawn-card {{ suit }}">{{ card }}</span> {# ändrat här #}
             {% endfor %}
         </div>
         <br>Poäng: {{ player.getScore }}
@@ -22,9 +22,9 @@
         <h2>Bankens kort:</h2>
         <p>
         <div class="drawn-cards">
-            {% for card in bank.getHand.getCards %}
+            {% for card in player.getHand.getCards %}
                 {% set suit = card.getSuit()|lower %}
-                <span class="playing-card {{ suit }}">{{ card }}</span>
+                <span class="drawn-card {{ suit }}">{{ card }}</span> {# ändrat här #}
             {% endfor %}
         </div>
             <br>Poäng: {{ bank.getScore }}
