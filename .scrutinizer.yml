@@ -14,12 +14,14 @@ build:
             dependencies:
                 before:
                     - npm install
+                    - npm run build
+                    - php bin/console doctrine:database:create --env=test
+                    - php bin/console doctrine:schema:create --env=test
             tests:
                 override:
                     - php -v
                     - composer install --no-interaction --prefer-dist
-                    - npm run build
-                    - ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=docs/coverage.clover
+                    - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
 
         analysis:
             environment:
