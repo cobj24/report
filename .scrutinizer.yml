@@ -1,3 +1,6 @@
+filter:
+    excluded_paths: [vendor/*, test/*]
+
 build:
     image: default-jammy
 
@@ -23,3 +26,9 @@ build:
             tests:
                 override:
                     - php-scrutinizer-run
+
+cache:
+    directories:
+        - ~/.composer/cache/
+        # Ta bort yarn cache om du inte använder yarn
+        # - ~/.cache/yarn
