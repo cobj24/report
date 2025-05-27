@@ -11,6 +11,8 @@ build:
                     version: 8.3.3
                 node:
                     version: 18
+                env:
+                    XDEBUG_MODE: coverage
             dependencies:
                 before:
                     - composer install --no-interaction --prefer-dist
@@ -18,10 +20,10 @@ build:
                     - npm run build
                     - php bin/console doctrine:database:create --env=test
                     - php bin/console doctrine:schema:create --env=test
+                    - php bin/console doctrine:fixtures:load --env=test --no-interaction
             tests:
                 override:
-                    - php -v
-                    - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+                    - ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=docs/coverage.clover
 
         analysis:
             environment:
