@@ -76,7 +76,12 @@
         <section id="kmom06">
         <h2>kmom06</h2>
         <p>
-            Redovisning för kmom06...
+            I kursmoment 6 arbetade vi vidare med vår hemsida och fokuserade på automatiserade tester, främst med phpmetrics och Scrutinizer.
+            Jag tyckte PHPMetrics var ett pedagogiskt verktyg som gav en bra översikt över koden. Det jag särskilt uppskattade var de visuella graferna. Den sammanfattande rapporten gjorde det enkelt att få en överskådlig bild av kodens tillstånd. Jag gillade också att man kunde klicka sig ner i detaljer för varje klass och metod.
+            Scrutinizer var lite svårare att få igång än väntat, främst eftersom miljön där testerna körs skiljer sig en del från min lokala. Det uppstod fel relaterade till saknade frontend-filer som entrypoints.json, men det gick att lösa med ett kommando som skapade en tom fil. Jag fick tillslut resultatet som syns i min rapport, min build verkar dock ha strulat till det efter att jag gjort mina förbättringar, då den numera har "failed".
+            Efter det kördes testerna, men jag behövde även anpassa .scrutinizer.yml något. Första intrycket av Scrutinizer är att det är ett kraftfullt verktyg för kodanalys, men det kräver lite pill för att allt ska fungera i miljön. Badgesen är en enkel men tydlig indikator som visar status för både kodtäckning och kvalitet direkt i GitHub-repot. Om jag hade haft mer tid så hade jag gärna fortsatt tragla på med Scrutinizer, men jag prioriterar i detta läge att få in uppgiften.
+            För mig handlar kodkvalitet mycket om läsbarhet, enkelhet och testbarhet. Ren kod med tydlig struktur gör det enklare att underhålla, vidareutveckla och felsöka. Jag tror verktyg som Scrutinizer och PHPMetrics kan hjälpa till att lyfta fram problemområden, men de visar bara en del av helheten.
+            TIL för detta kmom är hur mycket CI-verktyg som Scrutinizer och analysverktyg som PHPMetrics kan avslöja om kodens struktur och svagheter. Jag lärde mig också att det är viktigt att förstå hur verktygen fungerar i olika miljöer och att även små detaljer (som en saknad JSON-fil) kan orsaka stora problem.
         </p>
     </section>
 
