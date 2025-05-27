@@ -3,6 +3,7 @@
 namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
 
 class GameControllerTest extends WebTestCase
 {
@@ -12,7 +13,7 @@ class GameControllerTest extends WebTestCase
         $client->request('GET', '/game');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('h1'); // Kolla att startsidan visar något tydligt
+        $this->assertSelectorExists('h1');
     }
 
     public function testDocPage()
@@ -21,7 +22,7 @@ class GameControllerTest extends WebTestCase
         $client->request('GET', '/game/doc');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Dokumentation'); // Anpassa efter ditt innehåll
+        $this->assertSelectorTextContains('h1', 'Dokumentation');
     }
 
     public function testPlayPageWithoutActions()
@@ -30,33 +31,48 @@ class GameControllerTest extends WebTestCase
         $client->request('GET', '/game/play');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('.player-hand'); // Kontrollera att spelardata finns med i sidan
+        $this->assertSelectorExists('.drawn-cards');  // ändrat från .player-hand
+        $this->assertSelectorExists('.playing-card'); // kolla att det finns kort
     }
 
     public function testPlayDrawAction()
     {
         $client = static::createClient();
 
-        // Skicka POST med "draw"
+        // Skapa session och sätt cookie
+        $session = self::getContainer()->get('session.factory')->createSession();
+        $session->set('game', null); // Rensa eventuell tidigare game-objekt
+        $session->save();
+
+        $client->getCookieJar()->set(
+            new Cookie($session->getName(), $session->getId())
+        );
+
         $client->request('POST', '/game/play', ['draw' => true]);
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('.player-hand');
-        $this->assertSelectorExists('.bank-hand');
+        $this->assertSelectorExists('.drawn-cards');
+        $this->assertSelectorExists('.playing-card');
         $this->assertSelectorExists('.status');
-        // Kan lägga till asserts för att se att handen uppdaterats om du kan identifiera det i HTML
     }
 
     public function testPlayStayAction()
     {
         $client = static::createClient();
 
-        // Skicka POST med "stay"
+        $session = self::getContainer()->get('session.factory')->createSession();
+        $session->set('game', null);
+        $session->save();
+
+        $client->getCookieJar()->set(
+            new Cookie($session->getName(), $session->getId())
+        );
+
         $client->request('POST', '/game/play', ['stay' => true]);
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('.player-hand');
-        $this->assertSelectorExists('.bank-hand');
+        $this->assertSelectorExists('.drawn-cards');
+        $this->assertSelectorExists('.playing-card');
         $this->assertSelectorExists('.status');
     }
 
@@ -64,15 +80,22 @@ class GameControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        // Initiera spel i session via draw (för att se till att det finns ett spel)
+        $session = self::getContainer()->get('session.factory')->createSession();
+        $session->set('game', null);
+        $session->save();
+
+        $client->getCookieJar()->set(
+            new Cookie($session->getName(), $session->getId())
+        );
+
         $client->request('POST', '/game/play', ['draw' => true]);
 
-        // Nollställ spelet
         $client->request('GET', '/game/reset');
 
         $this->assertResponseRedirects('/game/play');
 
         $client->followRedirect();
-        $this->assertSelectorExists('.player-hand'); // Nu ska spelet vara nollställt och nytt spel laddat
+        $this->assertSelectorExists('.drawn-cards');
+        $this->assertSelectorExists('.playing-card');
     }
 }
