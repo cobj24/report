@@ -1,5 +1,5 @@
 filter:
-    excluded_paths: [vendor/*, test/*]
+    excluded_paths: [vendor/*, tests/*]
 
 build:
     image: default-jammy
@@ -9,14 +9,17 @@ build:
             environment:
                 php:
                     version: 8.3.3
+                nodejs:
+                    version: 18 # Node behövs för Webpack
+            dependencies:
+                before:
+                    - yarn install    # Installera npm-paket (för webpack m.m.)
             tests:
                 override:
-                    - command: "php -v"
-                    - command: "composer install"
-                    - command: "composer phpunit"
-                      coverage:
-                          file: "docs/coverage.clover"
-                          format: "php-clover"
+                    - php -v
+                    - composer install --no-interaction --prefer-dist
+                    - yarn build      # Kör webpack för att generera entrypoints.json
+                    - ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=docs/coverage.clover
 
         analysis:
             environment:

@@ -4,7 +4,7 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class LuckyControllerTest extends WebTestCase
+class LuckyControllerJsonTest extends WebTestCase
 {
     public function testLuckyRouteReturnsValidJson(): void
     {

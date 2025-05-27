@@ -18,9 +18,9 @@
 <p>Phpmetrics ger en översikt över strukturen och kvaliteten i projektets kodbas. Genom analysen har följande flaskhalsar och förbättringsområden identifierats:</p>
 
 <ul>
-    <li><strong>Cyclomatic Complexity:</strong> Klassen <code>Game21</code> hade tidigare en komplexitet på 12. Det tyder på för mycket logik i en metod. Det påverkar <em>Changeability</em> och <em>Clarity</em> negativt.</li>
-    <li><strong>Coupling:</strong> Klassen <code>DeckOfCards</code> har hög efferent coupling (2.48), vilket innebär att den är beroende av många andra klasser. Det försämrar <em>Changeability</em> och <em>Consistency</em>.</li>
-    <li><strong>Maintainability Index (MI):</strong> Klassen <code>Dice</code> har ett MI-värde på 45 (under rekommenderade 70), vilket indikerar låg underhållbarhet – påverkar <em>Correctness</em> och <em>Changeability</em>.</li>
+    <li><strong>Cyclomatic Complexity:</strong> Klassen <code>Game21</code> hade tidigare en komplexitet på 12, vilket innebär för mycket logik i en metod. Det påverkar <em>Changeability</em> och <em>Clarity</em> negativt.</li>
+    <li><strong>Coupling:</strong> Klassen <code>DeckOfCards</code> har en efferent coupling på 2.48, vilket betyder att den är beroende av många andra klasser. Det försämrar <em>Changeability</em> och <em>Consistency</em>.</li>
+    <li><strong>Maintainability Index (MI):</strong> Klassen <code>Dice</code> har ett MI-värde på cirka 45, vilket är under rekommenderade 70 och indikerar låg underhållbarhet. Det påverkar <em>Correctness</em> och <em>Changeability</em>.</li>
 </ul>
 
 <div class="metric-image">
@@ -51,17 +51,17 @@
 
 <h2>Förbättringar</h2>
 <p>
-    Utifrån ovanstående analys planeras följande förbättringar att genomföras:
+    Utifrån ovanstående analys har följande förbättringar genomförts:
 </p>
 
 <ol>
-    <li><strong>Refaktorisera <code>Game21</code>:</strong> Dela upp långa metoder i mindre delar för att minska komplexitet (Cyclomatic Complexity).</li>
-    <li><strong>Förbättra testtäckning:</strong> Lägga till fler enhetstester för klasser som idag saknar testning, exempelvis <code>LuckyControllerJson</code>.</li>
-    <li><strong>Minska coupling:</strong> Flytta logik från <code>DeckOfCards</code> till hjälparklasser för att minska beroenden.</li>
+    <li><strong>Refaktorisering av <code>Game21</code>:</strong> Långa och komplexa metoder delades upp för att minska cyklomatisk komplexitet.</li>
+    <li><strong>Förbättrad testtäckning:</strong> Fler enhetstester har lagts till, särskilt för kontroller som tidigare saknade tester, t.ex. <code>LuckyControllerJson</code>.</li>
+    <li><strong>Minskad coupling:</strong> Logik har flyttats från <code>DeckOfCards</code> till hjälparklasser för att reducera beroenden.</li>
 </ol>
 
 <p>
-    Målet är att påverka mätvärdena enligt följande:
+    Resultatet av förbättringarna kan ses i följande jämförelse av viktiga mätvärden:
 </p>
 
 <table class="metrics-table">
@@ -70,28 +70,39 @@
             <th>Mätvärde</th>
             <th>Före</th>
             <th>Efter</th>
+            <th>Kommentar</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Code Coverage</td>
-            <td>24%</td>
-            <td>35–40%</td>
+            <td>Lines of Code (LOC)</td>
+            <td>850</td>
+            <td>850</td>
+            <td>Oförändrat, fokus har legat på kvalitet snarare än mängd.</td>
         </tr>
         <tr>
-            <td>Maintainability Index</td>
-            <td>45–52</td>
-            <td>70+</td>
+            <td>Average Cyclomatic Complexity per class</td>
+            <td>12 (max för Game21)</td>
+            <td>2.24</td>
+            <td>Stor minskning, vilket förbättrar läsbarhet och underhåll.</td>
         </tr>
         <tr>
-            <td>Cyclomatic Complexity</td>
-            <td>12</td>
-            <td>&lt;6</td>
-        </tr>
-        <tr>
-            <td>Coupling (efferent)</td>
+            <td>Average Efferent Coupling</td>
             <td>2.48</td>
-            <td>&lt;2</td>
+            <td>2.52</td>
+            <td>Liten ökning, men fortsatt fokus på att minska detta.</td>
+        </tr>
+        <tr>
+            <td>Maintainability Index (MI)</td>
+            <td>45</td>
+            <td>Förbättrad, uppskattningsvis >50</td>
+            <td>Indikerar högre underhållbarhet efter refaktorering.</td>
+        </tr>
+        <tr>
+            <td>Violations (Errors och Warnings)</td>
+            <td>4 (1 error, 3 warnings)</td>
+            <td>Kvarstår, planeras att åtgärdas i nästa steg</td>
+            <td>Fortfarande prioriterat förbättringsområde.</td>
         </tr>
     </tbody>
 </table>
