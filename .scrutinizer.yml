@@ -1,6 +1,3 @@
-filter:
-    excluded_paths: [vendor/*, test/*]
-
 build:
     image: default-jammy
 
@@ -13,6 +10,7 @@ build:
                 override:
                     - command: "php -v"
                     - command: "composer install"
+                    - command: "mkdir -p public/build && echo '{}' > public/build/entrypoints.json"
                     - command: "composer phpunit"
                       coverage:
                           file: "docs/coverage.clover"
