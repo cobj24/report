@@ -13,6 +13,7 @@ build:
                     version: 18
             dependencies:
                 before:
+                    - composer install --no-interaction --prefer-dist
                     - npm install
                     - npm run build
                     - php bin/console doctrine:database:create --env=test
@@ -20,7 +21,6 @@ build:
             tests:
                 override:
                     - php -v
-                    - composer install --no-interaction --prefer-dist
                     - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
 
         analysis:
