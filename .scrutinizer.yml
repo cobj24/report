@@ -10,15 +10,15 @@ build:
                 php:
                     version: 8.3.3
                 node:
-                    version: 18 # Node behövs för Webpack
+                    version: 18
             dependencies:
                 before:
-                    - yarn install    # Installera npm-paket (för webpack m.m.)
+                    - npm install
             tests:
                 override:
                     - php -v
                     - composer install --no-interaction --prefer-dist
-                    - yarn build      # Kör webpack för att generera entrypoints.json
+                    - npm run build
                     - ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=docs/coverage.clover
 
         analysis:
