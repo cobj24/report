@@ -11,7 +11,7 @@ build:
                     version: 8.3.3
                 node:
                     version: 18
-                env:
+                variables:
                     XDEBUG_MODE: coverage
             dependencies:
                 before:
