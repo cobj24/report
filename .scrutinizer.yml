@@ -7,22 +7,26 @@ filter:
 build:
   image: default-bionic
 
+environment:
+  COMPOSER_NO_AUTO_SCRIPTS: '1'
+
+build:
   nodes:
     my-tests:
       environment:
         php:
-          version: 8.3.3
-          pecl_extensions:
-            - xdebug
+          version: 8.3
+      project_setup:
+        - mkdir -p public/build
+        - mkdir -p public/build
+        - echo '{}' > public/build/entrypoints.json
+
+      commands:
+        - composer install --no-dev --no-scripts
+        - composer dump-autoload
       tests:
         override:
-          - command: 'mkdir -p public/build && echo "{\"entrypoints\":{}}" > public/build/entrypoints.json'
-          - command: 'composer install'
-          - command: 'XDEBUG_MODE=coverage composer phpunit'
-            coverage:
-              file: "docs/coverage.clover"
-              format: "php-clover"
-
+          - phpunit --coverage-clover=docs/coverage.clover
     analysis:
       tests:
         override:
