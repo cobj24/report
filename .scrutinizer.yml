@@ -4,6 +4,16 @@ imports:
 filter:
     excluded_paths: [vendor/*, test/*]
 
+tools:
+    php_code_sniffer: true
+    php_cpd: true
+    php_loc: true
+    php_mess_detector: true
+    php_pdepend: true
+    php_sim: true
+    php_analyzer: true
+    external_code_coverage: true
+
 build:
     image: default-jammy
 
@@ -32,12 +42,6 @@ build:
             environment:
                 php:
                     version: 8.3.3
-            tools:
-                external_code_coverage: true
-                php_code_sniffer: true
-                php_cpd: true
-                php_loc: true
-                php_mess_detector: true
-                php_pdepend: true
-                php_sim: true
-                php_analyzer: true
+            tests:
+                override:
+                    - php-scrutinizer-run
