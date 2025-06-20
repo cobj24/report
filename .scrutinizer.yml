@@ -1,31 +1,29 @@
 imports:
-    - php
+  - php
 
 filter:
-    excluded_paths: [vendor/*, test/*]
+  excluded_paths: [vendor/*, test/*]
 
 build:
-    image: default-bionic
+  image: default-bionic
 
-    nodes:
-        my-tests:
-            environment:
-                php:
-                    version: 8.3.3
-                    pecl_extensions:
-                        - xdebug
-            tests:
-                override:
-                    - command: >
-                        mkdir -p public/build &&
-                        echo '{"entrypoints":{}}' > public/build/entrypoints.json
-                    - command: "composer install"
-                    - command: "XDEBUG_MODE=coverage composer phpunit"
-                      coverage:
-                          file: "docs/coverage.clover"
-                          format: "php-clover"
+  nodes:
+    my-tests:
+      environment:
+        php:
+          version: 8.3.3
+          pecl_extensions:
+            - xdebug
+      tests:
+        override:
+          - command: 'mkdir -p public/build && echo "{\"entrypoints\":{}}" > public/build/entrypoints.json'
+          - command: 'composer install'
+          - command: 'XDEBUG_MODE=coverage composer phpunit'
+            coverage:
+              file: "docs/coverage.clover"
+              format: "php-clover"
 
-        analysis:
-            tests:
-                override:
-                    - php-scrutinizer-run
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
