@@ -15,9 +15,10 @@ build:
         php:
           version: 8.3
       project_setup:
-        - mkdir -p public/build
-        - mkdir -p public/build
-        - echo '{}' > public/build/entrypoints.json
+        before:
+          - mkdir -p public/build
+          - mkdir -p public/build
+          - echo '{}' > public/build/entrypoints.json
 
       commands:
         - composer install --no-dev --no-scripts
