@@ -12,7 +12,7 @@ build:
             environment:
                 php:
                     version: 8.3.3
-                    extensions:
+                    pecl_extensions:
                         - xdebug
             tests:
                 override:
