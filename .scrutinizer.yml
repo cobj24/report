@@ -18,6 +18,4 @@ build:
       commands:
         - composer install --no-scripts
         - composer dump-autoload
-      tests:
-        override:
-          - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+        - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
