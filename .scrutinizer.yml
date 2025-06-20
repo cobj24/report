@@ -19,4 +19,4 @@ build:
           - composer dump-autoload
       tests:
         override:
-          - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+          - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
