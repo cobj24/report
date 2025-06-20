@@ -10,12 +10,13 @@ build:
     my-tests:
       environment:
         php:
-          version: 8.2
+          version: 8.3
       project_setup:
         before:
           - mkdir -p public/build
           - echo '{}' > public/build/entrypoints.json
-      commands:
-        - composer install --no-scripts
-        - composer dump-autoload
-        - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+          - composer install --no-scripts
+          - composer dump-autoload
+      tests:
+        override:
+          - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
