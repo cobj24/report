@@ -4,9 +4,6 @@ imports:
 filter:
   excluded_paths: [vendor/*, test/*]
 
-environment:
-  COMPOSER_NO_AUTO_SCRIPTS: '1'
-
 build:
   image: default-bionic
   nodes:
@@ -17,9 +14,7 @@ build:
       project_setup:
         before:
           - mkdir -p public/build
-          - mkdir -p public/build
           - echo '{}' > public/build/entrypoints.json
-
       commands:
         - composer install --no-dev --no-scripts
         - composer dump-autoload
