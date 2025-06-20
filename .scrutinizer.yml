@@ -16,12 +16,14 @@ build:
             environment:
                 php:
                     version: 8.3.3
+            dependencies:
+                before:
+                    - composer install --no-progress --no-interaction
             tests:
                 override:
                     - command: "php -v"
-                    - command: "composer install"
                     - command: "mkdir -p public/build && echo '{}' > public/build/entrypoints.json"
-                    - command: "composer phpunit"
+                    - command: "XDEBUG_MODE=coverage composer phpunit"
                       coverage:
                           file: "docs/coverage.clover"
                           format: "php-clover"
@@ -30,6 +32,12 @@ build:
             environment:
                 php:
                     version: 8.3.3
-            tests:
-                override:
-                    - php-scrutinizer-run
+            tools:
+                external_code_coverage: true
+                php_code_sniffer: true
+                php_cpd: true
+                php_loc: true
+                php_mess_detector: true
+                php_pdepend: true
+                php_sim: true
+                php_analyzer: true
