@@ -15,9 +15,8 @@ build:
         before:
           - mkdir -p public/build
           - echo '{}' > public/build/entrypoints.json
-      commands:
-        - composer install --no-dev --no-scripts
-        - composer dump-autoload
+          - composer install --no-dev --no-scripts
+          - composer dump-autoload
       tests:
         override:
           - phpunit --coverage-clover=docs/coverage.clover
