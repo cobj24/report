@@ -4,31 +4,21 @@ imports:
 filter:
     excluded_paths: [vendor/*, test/*]
 
-tools:
-    php_code_sniffer: true
-    php_cpd: true
-    php_loc: true
-    php_mess_detector: true
-    php_pdepend: true
-    php_sim: true
-    php_analyzer: true
-    external_code_coverage: true
-
 build:
     image: default-bionic
-
-    cache:
-        directories:
-            - ~/.composer/cache/
 
     nodes:
         my-tests:
             environment:
                 php:
                     version: 8.3.3
+                    extensions:
+                        - xdebug
             tests:
                 override:
-                    - command: "mkdir -p public/build && echo '{}' > public/build/entrypoints.json"
+                    - command: >
+                        mkdir -p public/build &&
+                        echo '{"entrypoints":{}}' > public/build/entrypoints.json
                     - command: "composer install"
                     - command: "XDEBUG_MODE=coverage composer phpunit"
                       coverage:
@@ -36,9 +26,6 @@ build:
                           format: "php-clover"
 
         analysis:
-            environment:
-                php:
-                    version: 8.3.3
             tests:
                 override:
                     - php-scrutinizer-run
