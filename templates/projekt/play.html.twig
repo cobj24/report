@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Poker Square{% endblock %}
+
+{% block body %}
+    <h1>Poker Square</h1>
+
+    <p>Placera ett kort i en ledig ruta för att skapa bästa möjliga pokerhänder horisontellt och vertikalt.</p>
+
+    {% if not gameOver and nextCard %}
+        <div class="current-card">
+            <strong>Nästa kort:</strong>
+            <img src="{{ asset('img/cards/' ~ nextCard.getImageBaseName() ~ '.svg') }}" alt="{{ nextCard.getValue() }}{{ nextCard.getSymbol() }}" class="card-img">
+        </div>
+    {% endif %}
+
+    <div class="grid-wrapper">
+        <form method="post" action="{{ path('proj_place_card') }}">
+            <div class="grid-and-scores">
+                <div class="card-grid">
+                    {% for row in 0..4 %}
+                        <div class="row">
+                            {% for col in 0..4 %}
+                                {% set key = row ~ '-' ~ col %}
+                                {% if grid[key] is defined %}
+                                    <img src="{{ asset('img/cards/' ~ grid[key].getImageBaseName() ~ '.svg') }}" alt="{{ grid[key].getValue() ~ ' of ' ~ grid[key].getSymbol() }}" class="card-img">
+                                {% elseif nextCard %}
+                                    <button type="submit" name="position" value="{{ key }}" class="card-slot">?</button>
+                                {% else %}
+                                    <span class="card-slot disabled">-</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <!-- Kolumnpoäng -->
+                    <div class="column-scores">
+                        {% for col in 0..4 %}
+                            <span class="col-score">{{ scores.cols[col] }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Radpoäng -->
+                <div class="row-scores">
+                    {% for row in 0..4 %}
+                        <span class="row-score">{{ scores.rows[row] }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+        <div class="stats-panel">
+            <h2>Statistik</h2>
+            <p><strong>Poäng:</strong> {{ totalScore }}</p>
+            <p><strong>Drag kvar:</strong> {{ 25 - grid|length }}</p>
+            {% if suggestedMove %}
+                <p><strong>Tips:</strong> Placera på <code>{{ suggestedMove }}</code></p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if gameOver %}
+        <form method="post" action="{{ path('proj_save_score') }}">
+            <label for="player_name">Ditt namn:</label>
+            <input type="text" name="player_name" required>
+            <input type="submit" value="Spara poäng" class="poker-button">
+        </form>
+        <p><a href="{{ path('proj_reset') }}" class="poker-button">Starta om spelet</a></p>
+    {% endif %}
+{% endblock %}

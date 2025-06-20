@@ -1,4 +1,3 @@
-![mvc image](.img/web.jpg)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cobj24/report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/cobj24/report/)
 [![Code Coverage](https://scrutinizer-ci.com/g/cobj24/report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/cobj24/report/)
@@ -20,6 +19,27 @@ Syftet är att lära sig objektorienterad PHP-programmering, routing, templates 
 - [x] Responsiv layout
 - [x] Rapport- och om-sidor
 - [x] Lucky number och citat-API
+- [x] **Poker Square-spel**
+  - 5x5 kortspel med poängräkning
+  - Automatisk tips-funktion
+  - Highscore med namn
+  - Visualisering av statistik
+  - Dynamiskt gränssnitt med kortbilder
+
+---
+
+## 🃏 Poker Square – Kortspel
+
+Detta är ett interaktivt spel där du placerar kort i ett 5x5-rutnät för att skapa bästa möjliga pokerhänder i rader och kolumner.
+
+Spelfunktioner:
+- Automatisk poängräkning för varje rad/kolumn
+- Tips om bästa placering för varje kort
+- Highscore med namn
+- Statistik över bästa hand, drag kvar m.m.
+- Visuella kortbilder från `.svg`-filer
+
+Spelstart: [http://localhost:8000/proj](http://localhost:8000/proj)
 
 ---
 
@@ -28,24 +48,5 @@ Syftet är att lära sig objektorienterad PHP-programmering, routing, templates 
 ### 1. Klona repot
 
 ```bash
-git clone https://git@github.com:cobj24/report.git
-cd me/report
-
-### 2. Installera beroenden
-
-Se till att du har Composer installerat, och kör sedan:
-
-composer install
-
-### 3. Starta Symfony-servern
-
-Kör webbservern med Symfony CLI:
-php -S localhost:8888 -t public
-
-### 4. Öppna i webbläsaren
-
-Gå till http://localhost:8000 i din webbläsare för att se startsidan.
-
-### 5. Utforska
-
-Utforska webbsidans funktioner och testa samtliga funktioner.
+git clone https://github.com/cobj24/report.git
+cd report

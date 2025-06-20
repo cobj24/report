@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Om Projektet{% endblock %}
+
+{% block body %}
+    <h1>Om Projektet</h1>
+    <p> I detta projekt implementerar jag kortspelet/patiensen Poker Square. Poker Square är ett solitärt kortspel där spelaren försöker placera 25 kort i ett 5x5 rutnät för att bilda så starka pokerhänder som möjligt horisontellt och vertikalt.
+    Poängen beräknas baserat på hur stark varje rad och kolumn är, enligt pokerregler.</p>
+    <img src="{{ asset('img/cards.png') }}" alt="cards" class="cards-img">
+{% endblock %}

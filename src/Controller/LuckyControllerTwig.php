@@ -49,4 +49,10 @@ class LuckyControllerTwig extends AbstractController
     {
         return $this->render('metrics.html.twig');
     }
+
+    #[Route('/projekt', name: 'projekt')]
+    public function projekt(): Response
+    {
+        return $this->render('projekt.html.twig');
+    }
 }

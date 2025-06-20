@@ -1,7 +1,5 @@
 <?php
 
-// src/Controller/GameController.php
-
 namespace App\Controller;
 
 use App\Game\Game21;
@@ -24,7 +22,6 @@ class GameController extends AbstractController
         } elseif ($request->request->has('stay')) {
             $game->playerStay();
         } else {
-            // Starta ingen kortdragning automatiskt, vänta på spelarens knapp
         }
 
         $session->set('game', $game);

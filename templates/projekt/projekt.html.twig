@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projekt{% endblock %}
+
+{% block body %}
+    <h1>Mitt Projekt</h1>
+    <p>Välkommen till Poker Square – ett solitärt kortspel där du försöker samla poäng genom att placera ut kort i ett rutnät.</p>
+
+    <a href="{{ path('proj_play') }}" class="poker-button">Starta spelet</a>
+{% endblock %}

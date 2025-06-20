@@ -1,0 +1,16 @@
+{# templates/projekt/highscores.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Highscores{% endblock %}
+
+{% block body %}
+    <h1>Highscore</h1>
+    <ul>
+        {% for score in highscores %}
+            <li>{{ score.name }} – {{ score.score }} poäng</li>
+        {% else %}
+            <li>Inga resultat ännu.</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path('proj_play') }}" class="poker-button">Spela igen</a>
+{% endblock %}
