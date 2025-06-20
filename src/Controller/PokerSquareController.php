@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PokerSquareController extends AbstractController
 {
+    /**
+     * Show the current state of the Poker Square game.
+     */
     #[Route('/proj/play', name: 'proj_play')]
     public function play(SessionInterface $session): Response
     {
@@ -21,6 +24,7 @@ class PokerSquareController extends AbstractController
             $game = new PokerSquareGame();
             $session->set('poker_game', $game);
         }
+
         return $this->render('projekt/play.html.twig', [
             'grid' => $game->getGrid(),
             'nextCard' => $game->getCurrentCard(),
@@ -31,6 +35,9 @@ class PokerSquareController extends AbstractController
         ]);
     }
 
+    /**
+     * Place a card at a specified position in the grid.
+     */
     #[Route('/proj/place', name: 'proj_place_card', methods: ['POST'])]
     public function place(Request $request, SessionInterface $session): Response
     {
@@ -46,6 +53,9 @@ class PokerSquareController extends AbstractController
         return $this->redirectToRoute('proj_play');
     }
 
+    /**
+     * Save the current score to the highscore list and reset the game.
+     */
     #[Route('/proj/save-score', name: 'proj_save_score', methods: ['POST'])]
     public function saveScore(Request $request, SessionInterface $session, HighscoreService $highscoreService): Response
     {
@@ -61,16 +71,22 @@ class PokerSquareController extends AbstractController
         return $this->redirectToRoute('proj_highscores');
     }
 
+    /**
+     * Show the list of highscores.
+     */
     #[Route('/proj/highscores', name: 'proj_highscores')]
     public function highscores(HighscoreService $highscoreService): Response
     {
         $scores = $highscoreService->getHighscores();
 
         return $this->render('projekt/highscores.html.twig', [
-            'highscores' => $scores
+            'highscores' => $scores,
         ]);
     }
 
+    /**
+     * Reset the current game session.
+     */
     #[Route('/proj/reset', name: 'proj_reset')]
     public function reset(SessionInterface $session): Response
     {

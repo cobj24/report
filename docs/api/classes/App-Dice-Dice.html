@@ -92,6 +92,10 @@
                 <a href="namespaces/app-repository.html" class="">Repository</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/app-service.html" class="">Service</a>
+                
+            </li>
             </ul>
 
                         </section>
@@ -146,11 +150,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Klass som representerar en sexsidig tärning.</p>
+
 
 
 
@@ -184,6 +189,7 @@
     <span>
                         &nbsp;: int            </span>
 </dt>
+<dd>Tärningens aktuella värde (1-6).</dd>
 
     </dl>
 
@@ -198,18 +204,21 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Konstruktor. Slumpar ett startvärde för tärningen.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Dice-Dice.html#method_getAsString">getAsString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Returnerar tärningens värde som en sträng, t.ex. &quot;[3]&quot;.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Dice-Dice.html#method_roll">roll()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
+<dd>Kastar (slumpar) tärningen och returnerar resultatet.</dd>
 
     </dl>
 
@@ -241,11 +250,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tärningens aktuella värde (1-6).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -282,11 +292,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Konstruktor. Slumpar ett startvärde för tärningen.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -316,11 +327,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Returnerar tärningens värde som en sträng, t.ex. &quot;[3]&quot;.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getAsString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
@@ -337,6 +349,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>tärningens värde som sträng</p>
+</section>
+
             </section>
 
 </article>
@@ -354,11 +370,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Kastar (slumpar) tärningen och returnerar resultatet.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">roll</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
@@ -375,6 +392,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>det nya tärningsvärdet mellan 1 och 6</p>
+</section>
+
             </section>
 
 </article>
