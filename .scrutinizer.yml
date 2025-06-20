@@ -4,13 +4,11 @@ imports:
 filter:
   excluded_paths: [vendor/*, test/*]
 
-build:
-  image: default-bionic
-
 environment:
   COMPOSER_NO_AUTO_SCRIPTS: '1'
 
 build:
+  image: default-bionic
   nodes:
     my-tests:
       environment:
