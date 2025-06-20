@@ -15,12 +15,9 @@ build:
         before:
           - mkdir -p public/build
           - echo '{}' > public/build/entrypoints.json
-          - composer install --no-dev --no-scripts
-          - composer dump-autoload
+      commands:
+        - composer install --no-scripts
+        - composer dump-autoload
       tests:
         override:
-          - phpunit --coverage-clover=docs/coverage.clover
-    analysis:
-      tests:
-        override:
-          - php-scrutinizer-run
+          - ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover

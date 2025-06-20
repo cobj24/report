@@ -85,7 +85,7 @@
         "importmap:install": "symfony-cmd"
     },
     "phpdoc": "tools/phpdoc/phpdoc --config=tools/phpdoc/phpdoc.xml",
-    "phpunit": "phpunit --coverage-clover=docs/coverage.clover",
+    "phpunit": "./vendor/bin/phpunit --coverage-clover=docs/coverage.clover",
     "phpmd": "tools/phpmd/vendor/bin/phpmd src,tests text tools/phpmd/phpmd.xml || true",
     "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
     "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json src",
