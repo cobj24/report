@@ -14,7 +14,7 @@ build:
       project_setup:
         before:
           - mkdir -p public/build
-          - echo '{}' > public/build/entrypoints.json
+          - 'echo "{\"entrypoints\": {}}" > public/build/entrypoints.json'
           - composer install --no-scripts
           - composer dump-autoload
       tests:
