@@ -1,22 +1,14 @@
-imports:
-  - php
-
-filter:
-  excluded_paths: [vendor/*, test/*]
-
 build:
-  image: default-jammy
   nodes:
     my-tests:
+      image: default-jammy
       environment:
         php:
           version: 8.2
-
       project_setup:
         before:
           - mkdir -p public/build
-          - |
-            echo '{
+          - echo '{
               "entrypoints": {
                 "app": {
                   "js": ["build/runtime.js", "build/app.js"],
@@ -36,4 +28,8 @@ build:
 
       tests:
         override:
-          - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+          -
+            command: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+            coverage:
+              file: docs/coverage.clover
+              format: clover
