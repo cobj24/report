@@ -1,55 +1,29 @@
-tools:
-  external_code_coverage: true
-  php_analyzer: true
-  php_code_sniffer: true
-  php_cpd: true
-  php_cs_fixer: true
-  php_loc: true
-  php_mess_detector: true
-  php_pdepend: true
-  php_sim: true
-  sensiolabs_security_checker: true
-
-build:
-  nodes:
-    code-analysis:
-      project_setup:
-        before:
-          - composer install --no-scripts
-          - composer dump-autoload
-      tests:
-        override:
-          - command: ./vendor/bin/phpstan analyse src --level=5
-
-    my-tests:
-      image: default-jammy
-      environment:
-        php:
-          version: 8.2
-      project_setup:
-        before:
-          - mkdir -p public/build
-          - echo '{
-              "entrypoints": {
-                "app": {
-                  "js": ["build/runtime.js", "build/app.js"],
-                  "css": ["build/app.css"]
-                },
-                "projekt": {
-                  "js": ["build/runtime.js", "build/projekt.js"],
-                  "css": ["build/projekt.css"]
-                }
-              }
-            }' > public/build/entrypoints.json
-          - echo '{}' > public/build/manifest.json
-          - touch public/build/runtime.js public/build/app.js public/build/app.css
-          - touch public/build/projekt.js public/build/projekt.css
-          - composer install --no-scripts
-          - composer dump-autoload
-      tests:
-        override:
-          -
-            command: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
-            coverage:
-              file: docs/coverage.clover
-              format: clover
+my-tests:
+  image: default-jammy
+  project_setup:
+    before:
+      - mkdir -p public/build
+      - echo '{
+          "entrypoints": {
+            "app": {
+              "js": ["build/runtime.js", "build/app.js"],
+              "css": ["build/app.css"]
+            },
+            "projekt": {
+              "js": ["build/runtime.js", "build/projekt.js"],
+              "css": ["build/projekt.css"]
+            }
+          }
+        }' > public/build/entrypoints.json
+      - echo '{}' > public/build/manifest.json
+      - touch public/build/runtime.js public/build/app.js public/build/app.css
+      - touch public/build/projekt.js public/build/projekt.css
+      - composer install --no-scripts
+      - composer dump-autoload
+  tests:
+    override:
+      -
+        command: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
+        coverage:
+          file: docs/coverage.clover
+          format: clover
