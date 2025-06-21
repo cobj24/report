@@ -1,11 +1,3 @@
-build:
-  nodes:
-    code-analysis:
-      project_setup:
-        before:
-          - composer install --no-scripts
-          - composer dump-autoload
-      analysis:
 tools:
   external_code_coverage: true
   php_code_sniffer: true
