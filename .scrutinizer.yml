@@ -2,7 +2,9 @@ build:
   nodes:
     code-analysis:
       project_setup:
-        composer_dependencies: true
+        before:
+          - composer install --no-scripts
+          - composer dump-autoload
       analysis:
         tools:
           php_code_sniffer: true
