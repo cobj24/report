@@ -10,14 +10,17 @@ build:
     my-tests:
       environment:
         php:
-          version: 8.2
-        project_setup:
+          version: 8.3
+
+      project_setup:
         before:
-            - mkdir -p public/build
-            - 'echo "{\"entrypoints\":{\"app\":{\"js\":[\"build/runtime.js\",\"build/app.js\"],\"css\":[\"build/app.css\"]},\"projekt\":{\"js\":[\"build/runtime.js\"],\"css\":[\"build/projekt.css\"]}}}" > public/build/entrypoints.json'
-            - touch public/build/runtime.js public/build/app.js public/build/app.css public/build/projekt.css
-            - composer install --no-scripts
-            - composer dump-autoload
+          - mkdir -p public/build
+          - >
+            echo '{"entrypoints":{"app":{"js":["build/runtime.js","build/app.js"],"css":["build/app.css"]},"projekt":{"js":["build/runtime.js"],"css":["build/projekt.css"]}}}' > public/build/entrypoints.json
+          - touch public/build/runtime.js public/build/app.js public/build/app.css public/build/projekt.css
+          - composer install --no-scripts
+          - composer dump-autoload
+
       tests:
         override:
           - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=docs/coverage.clover
