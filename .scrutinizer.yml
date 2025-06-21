@@ -1,5 +1,6 @@
 tools:
   external_code_coverage: true
+  php_analyzer: true
   php_code_sniffer: true
   php_cpd: true
   php_cs_fixer: true
@@ -7,11 +8,7 @@ tools:
   php_mess_detector: true
   php_pdepend: true
   php_sim: true
-  php_unit: true
   sensiolabs_security_checker: true
-  phpstan:
-    enabled: true
-    level: 5
 
 build:
   nodes:
@@ -20,6 +17,9 @@ build:
         before:
           - composer install --no-scripts
           - composer dump-autoload
+      tests:
+        override:
+          - command: ./vendor/bin/phpstan analyse src --level=5
 
     my-tests:
       image: default-jammy
