@@ -1,10 +1,29 @@
+tools:
+  php_code_sniffer: true
+  php_cpd: true
+  php_cs_fixer: true
+  php_loc: true
+  php_mess_detector: true
+  php_pdepend: true
+  php_sim: true
+  php_analyzer: true
+  sensiolabs_security_checker: true
+  external_code_coverage: true
+
 build:
   nodes:
+    analysis:
+      image: default-jammy
+      project_setup:
+        before:
+          - composer install --no-scripts
+          - composer dump-autoload
+      tests:
+        override:
+          - php-scrutinizer-run
+
     my-tests:
       image: default-jammy
-      environment:
-        php:
-          version: 8.2
       project_setup:
         before:
           - mkdir -p public/build
@@ -25,7 +44,6 @@ build:
           - touch public/build/projekt.js public/build/projekt.css
           - composer install --no-scripts
           - composer dump-autoload
-
       tests:
         override:
           -
