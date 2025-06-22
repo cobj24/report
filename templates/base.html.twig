@@ -14,8 +14,8 @@
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {% set entryName = app.request.get('_route') starts with 'proj' ? 'projekt' : 'app' %}
+            {{ encore_entry_script_tags(entryName) }}
         {% endblock %}
     </head>
 
